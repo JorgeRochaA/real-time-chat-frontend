@@ -8,26 +8,28 @@ export default new Vuex.Store({
     messages: [
       {
         username: "Jorge_CR",
-        message: "Hello People!",
-        userPicture:"https://i.ibb.co/dDJnkGD/emoji-1.png",
-        isImg: false,
-        date: "16/9/2021",
+        message: "Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!",
+        userPicture: "https://i.ibb.co/dDJnkGD/emoji-1.png",
+        date: "15/9/2021",
         usernameColor: "#2196F3",
       },
       {
         username: "Vipper Code",
-        message: "http://lineadecodigo.com/wp-content/uploads/2014/04/css.png",
-        userPicture:"https://i.ibb.co/dDJnkGD/emoji-1.png",
-        isImg: true,
+        message: "Hello Jorge!",
+        userPicture: "https://i.ibb.co/dDJnkGD/emoji-1.png",
         date: "16/9/2021",
         usernameColor: "#6200EA",
       },
     ],
+    user:{
+      name:"Jorge_CR"
+    }
   },
   mutations: {},
   actions: {},
   modules: {},
   getters: {
     getMessages: (state) => state.messages,
+    getUser: (state) => state.user,
   },
 });
