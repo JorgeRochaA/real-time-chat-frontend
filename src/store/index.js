@@ -8,7 +8,8 @@ export default new Vuex.Store({
     messages: [
       {
         username: "Jorge_CR",
-        message: "Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!",
+        message:
+          "Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!",
         userPicture: "https://i.ibb.co/dDJnkGD/emoji-1.png",
         date: "15/9/2021",
         usernameColor: "#2196F3",
@@ -21,15 +22,25 @@ export default new Vuex.Store({
         usernameColor: "#6200EA",
       },
     ],
-    user:{
-      name:"Jorge_CR"
-    }
+    user: {
+      name: "Jorge_CR",
+    },
+    showSuccessAlert: true,
   },
-  mutations: {},
-  actions: {},
+  mutations: {
+    changeShowSuccessValue(state, payload) {
+      state.showSuccessAlert = payload;
+    },
+  },
+  actions: {
+    changeShowSuccessAction(state, payload) {
+      state.commit("changeShowSuccessValue", payload);
+    },
+  },
   modules: {},
   getters: {
     getMessages: (state) => state.messages,
     getUser: (state) => state.user,
+    getShowSuccessValue: (state) => state.showSuccessAlert,
   },
 });
