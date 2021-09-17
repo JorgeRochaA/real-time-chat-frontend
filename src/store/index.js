@@ -25,16 +25,23 @@ export default new Vuex.Store({
     user: {
       name: "Jorge_CR",
     },
-    showSuccessAlert: true,
+    showSuccessAlert: false,
+    showErrorAlert: false,
   },
   mutations: {
     changeShowSuccessValue(state, payload) {
       state.showSuccessAlert = payload;
     },
+    changeShowErrorValue(state, payload) {
+      state.showErrorAlert = payload;
+    },
   },
   actions: {
     changeShowSuccessAction(state, payload) {
       state.commit("changeShowSuccessValue", payload);
+    },
+    changeShowErrorAction(state, payload) {
+      state.commit("changeShowErrorValue", payload);
     },
   },
   modules: {},
@@ -42,5 +49,6 @@ export default new Vuex.Store({
     getMessages: (state) => state.messages,
     getUser: (state) => state.user,
     getShowSuccessValue: (state) => state.showSuccessAlert,
+    getShowErrorValue: (state) => state.showErrorAlert
   },
 });

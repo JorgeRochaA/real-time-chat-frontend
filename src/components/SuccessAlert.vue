@@ -1,5 +1,5 @@
 <template>
-  <div class="alert" id="alert">
+  <div class="alert-success" id="alert-success">
     <div class="alert-images">
       <img src="../assets/alert-images/success.svg" alt="success-icon" />
       <img src="../assets/alert-images/greenBubbles.svg" alt="bubbles-icon" />
@@ -37,7 +37,7 @@ export default {
   watch: {
     show: function () {
       let value = this.getShowSuccessValue();
-      let alertCard = document.getElementById("alert");
+      let alertCard = document.getElementById("alert-success");
       if (value == true) {
         setTimeout(function () {
           alertCard.classList.add("show");
@@ -60,13 +60,13 @@ export default {
 };
 </script>
 
-<style lang="scss">
-.alert.show {
+<style scoped lang="scss">
+.alert-success.show {
   top: 10%;
   left: 50%;
   transform: translateX(-50%);
 }
-.alert {
+.alert-success {
   height: 150px;
   width: 450px;
   background-color: #04a65b;
@@ -146,14 +146,14 @@ export default {
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px){
-.alert.show{
+.alert-success.show{
     top: 20%;
     left: 50%;
     transform: translateX(-50%);
 }
 }
 @media only screen and (max-width: 575px){
-.alert.show{
+.alert-success.show{
     left: 50%;
     transform: translateX(-50%);
 }
