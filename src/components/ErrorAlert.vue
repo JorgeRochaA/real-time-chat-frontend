@@ -107,12 +107,10 @@ export default {
     font-size: 1.5rem;
 
     h2{
-        margin: 0;
         align-self: flex-end;
         margin-right: 37px;
     }
     h5{
-        margin: 0;
         align-self: flex-end;
     }
   }
