@@ -1,31 +1,22 @@
 <template>
   <div>
-    <div
-      class="card-container"
-      v-for="(message, index) in messages"
-      :key="index"
-    >
-      <div class="message-info-container">
-        <h4
-          v-if="user.name != message.username"
-          :style="{ color: message.usernameColor }"
-        >
-          {{ message.username }}
-        </h4>
-        <h4 v-else :style="{ color: message.usernameColor }">Your Message</h4>
-        <h5>{{ message.date }}</h5>
+    <div class="card-container">
+      <div class="card-info">
+        <div class="username">
+          <h4>Jorge_CR</h4>
+        </div>
+        <div class="info">
+          <h4>10:45 PM | Yesterday</h4>
+        </div>
       </div>
-      <div class="username-message-container">
-        <div class="user-container userMessage">
-          <div
-            class="userpicture"
-            :style="{ 'background-color': message.usernameColor }"
-          >
-            <img :src="message.userPicture" alt="user picture" />
+      <div class="card-message-container">
+        <div class="username-photo-container">
+          <div class="photo" :style="{ 'background-color': '#2196F3' }">
+            <img src="https://i.ibb.co/dDJnkGD/emoji-1.png" alt="user-photo" />
           </div>
         </div>
-        <div class="message-container">
-          <p>{{ message.message }}</p>
+        <div class="message" :style="{ 'background-color': '#2196F3' }">
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum dolorem officia minus. Fugiat minima consequatur laboriosam labore impedit commodi praesentium</p>
         </div>
       </div>
     </div>
@@ -42,11 +33,20 @@ export default {
       user: {
         name: "",
       },
+      colors: [],
+      message: {
+        username: "Jorge_CR",
+        message: "Hello People!",
+        userPicture: "https://i.ibb.co/dDJnkGD/emoji-1.png",
+        date: "15/9/2021",
+        usernameColor: "#2196F3",
+      },
     };
   },
   mounted() {
     this.messages = this.getMessagesFromStore;
     this.user = this.getUserFromStore;
+    this.generar();
   },
   computed: {
     getMessagesFromStore() {
@@ -58,78 +58,121 @@ export default {
   },
   methods: {
     ...mapGetters(["getMessages", "getUser"]),
+    generarLetra() {
+      var letras = [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+      ];
+      var numero = (Math.random() * 15).toFixed(0);
+      return letras[numero];
+    },
+    colorHEX() {
+      var coolor = "";
+      for (var i = 0; i < 6; i++) {
+        coolor = coolor + this.generarLetra();
+      }
+      return "#" + coolor;
+    },
+    generar() {
+      for (let i = 0; i < 30; i++) {
+        let color = this.colorHEX();
+
+        this.colors.push(color);
+      }
+    },
   },
 };
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+.card-message-container.user{
+  flex-direction: row-reverse;
+}
 .card-container {
-  height: 200px;
-  width: 500px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  margin: 20px 0px;
-
-  .message-info-container {
-    height: 20%;
-    width: 95%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 150px;
+  width: 450px;
+  // background-color: gold;
+  .card-info {
+    height: 30%;
+    width: 100%;
+    // background-color: green;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    h4 {
-      margin-left: 20px;
-    }
-
-    h5 {
-      margin-right: 10px;
-    }
-  }
-  .username-message-container {
-    height: 70%;
-    width: 95%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .user-container {
+    .username {
       height: 100%;
       width: 30%;
       display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
+      justify-content: center;
       align-items: center;
-      background: crimson;
- 
-      &:hover{
-        display: none;
-      }
-
-      .userpicture {
-        height: 85%;
-        width: 85%;
-        border-radius: 50%;
-        overflow: hidden;
-
-        img {
-          height: 100%;
-          width: 100%;
-        }
-      }
+      // background-color: teal;
     }
-    .message-container {
+    .info {
       height: 100%;
       width: 70%;
       display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      // background-color: gold;
+      h4 {
+        margin-right: 10px;
+        color: #aba8a5;
+      }
+    }
+  }
+  .card-message-container {
+    height: 70%;
+    width: 100%;
+    //  background-color: red;
+    display: flex;
+
+    .username-photo-container {
+      height: 100%;
+      width: 30%;
+      display: flex;
       justify-content: center;
       align-items: center;
-
-      p {
+      .photo {
+        height: 85%;
+        width: 70%;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+          height: 90%;
+          width: 90%;
+        }
+      }
+    }
+    .message {
+      height: 100%;
+      width: 70%;
+      border-radius: 15px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      p{
+        height: 80%;
         width: 90%;
+        color: white;
       }
     }
   }

@@ -9,7 +9,7 @@ export default new Vuex.Store({
       {
         username: "Jorge_CR",
         message:
-          "Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!Hello People!",
+          "Hello People!",
         userPicture: "https://i.ibb.co/dDJnkGD/emoji-1.png",
         date: "15/9/2021",
         usernameColor: "#2196F3",
