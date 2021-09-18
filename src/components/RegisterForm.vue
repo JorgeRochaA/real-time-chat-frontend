@@ -19,7 +19,7 @@
         </div>
         <input type="password" placeholder="Password">
       </div>
-      <input type="submit" />
+      <input type="submit" value="Sign Up" />
     </form>
   </div>
 </template>

@@ -6,7 +6,7 @@
           <h4>Jorge_CR</h4>
         </div>
         <div class="info">
-          <h4>10:45 PM | Yesterday</h4>
+          <h4>10:45 PM | 12/09/2021</h4>
         </div>
       </div>
       <div class="card-message-container">
@@ -16,7 +16,10 @@
           </div>
         </div>
         <div class="message" :style="{ 'background-color': '#2196F3' }">
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Harum dolorem officia minus. Fugiat minima consequatur laboriosam labore impedit commodi praesentium</p>
+          <p>
+            Harum dolorem officia minus. Fugiat minima consequatur laboriosam
+            labore impedit commodi praesentium
+          </p>
         </div>
       </div>
     </div>
@@ -99,7 +102,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.card-message-container.user{
+.card-message-container.user {
   flex-direction: row-reverse;
 }
 .card-container {
@@ -109,19 +112,18 @@ export default {
   transform: translate(-50%, -50%);
   height: 150px;
   width: 450px;
-  // background-color: gold;
+
   .card-info {
     height: 30%;
     width: 100%;
-    // background-color: green;
     display: flex;
+
     .username {
       height: 100%;
       width: 30%;
       display: flex;
       justify-content: center;
       align-items: center;
-      // background-color: teal;
     }
     .info {
       height: 100%;
@@ -129,7 +131,7 @@ export default {
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      // background-color: gold;
+
       h4 {
         margin-right: 10px;
         color: #aba8a5;
@@ -139,7 +141,6 @@ export default {
   .card-message-container {
     height: 70%;
     width: 100%;
-    //  background-color: red;
     display: flex;
 
     .username-photo-container {
@@ -148,6 +149,7 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
+
       .photo {
         height: 85%;
         width: 70%;
@@ -155,6 +157,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+
         img {
           height: 90%;
           width: 90%;
@@ -169,11 +172,31 @@ export default {
       justify-content: center;
       align-items: center;
       text-align: center;
-      p{
+
+      p {
         height: 80%;
         width: 90%;
         color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
+    }
+  }
+}
+@media screen and (max-width: 500px) {
+  .card-container {
+    width: 95%;
+    .username-photo-container {
+      width: 25% !important;
+      justify-content: flex-start !important;
+      .photo {
+        height: 75% !important;
+        width: 80% !important;
+      }
+    }
+    .message {
+      width: 75% !important;
     }
   }
 }
