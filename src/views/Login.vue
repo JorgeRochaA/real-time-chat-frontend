@@ -7,6 +7,9 @@
       <div class="spacer"></div>
       <div class="form">
         <LoginOrRegister />
+        <LoginForm v-if="this.loginOrSignUp" />
+        <RegisterForm v-else/>
+        <ErrorAlert/>
       </div>
     </div>
   </div>
@@ -14,10 +17,20 @@
 
 <script>
 import LoginOrRegister from "../components/LoginOrRegister.vue";
+import LoginForm from "../components/LoginForm.vue";
+import RegisterForm from '../components/RegisterForm.vue';
+import ErrorAlert from '../components/ErrorAlert.vue';
+import { mapState } from "vuex";
 export default {
   name: "Login",
   components: {
     LoginOrRegister,
+    LoginForm,
+    RegisterForm,
+    ErrorAlert,
+  },
+  computed: {
+     ...mapState(['loginOrSignUp','showErrorAlert']),
   },
 };
 </script>
@@ -33,7 +46,7 @@ export default {
   .form-container {
     height: 80%;
     width: 100%;
-    background-color: whitesmoke;
+    background-color: white;
     border-radius: 30px 30px 0 0;
     position: relative;
     .app-logo {
@@ -60,11 +73,30 @@ export default {
     .form {
       height: 80%;
       width: 100%;
-
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
       align-items: center;
+    }
+  }
+}
+@media (min-width: 320px) and (orientation: landscape) and (max-width: 900px) {
+  /* smartphones, tablets landscape*/
+  .form {
+    margin-top: 50px;
+    height: 375px !important;
+  }
+}
+@media (min-width: 900px) {
+  /* tablet, landscape iPad, lo-res laptops ands desktops */
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .form {
+      margin-top: 70px;
+      height: 85% !important;
+      width: 60% !important;
     }
   }
 }

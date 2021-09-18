@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
   name: "successAlert",
   data() {
@@ -26,19 +26,16 @@ export default {
     };
   },
   mounted() {
-    this.show = this.showValue;
+    this.show = this.showSuccessAlert;
     this.show;
   },
   computed: {
-    showValue() {
-      return this.getShowSuccessValue();
-    },
+...mapState(["showSuccessAlert"]),
   },
   watch: {
     show: function () {
-      let value = this.getShowSuccessValue();
       let alertCard = document.getElementById("alert-success");
-      if (value == true) {
+      if (this.show == true) {
         setTimeout(function () {
           alertCard.classList.add("show");
         }, 100);
@@ -49,7 +46,6 @@ export default {
     },
   },
   methods: {
-    ...mapGetters(["getShowSuccessValue"]),
     ...mapActions(["changeShowSuccessAction"]),
 
     hideAlert() {

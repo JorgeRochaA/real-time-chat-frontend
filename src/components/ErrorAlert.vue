@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 export default {
   name: "errorAlert",
   data() {
@@ -26,30 +26,26 @@ export default {
     };
   },
   mounted() {
-    this.show = this.showValue;
+    this.show = this.showErrorAlert;
     this.show;
   },
   computed: {
-    showValue() {
-      return this.getShowErrorValue();
-    },
+    ...mapState(["showErrorAlert"]),
   },
   watch: {
-    show: function () {
-      let value = this.getShowErrorValue();
+    show: function() {
       let alertCard = document.getElementById("alert-error");
-      if (value == true) {
-        setTimeout(function () {
+      if (this.show == true) {
+        setTimeout(function() {
           alertCard.classList.add("show");
         }, 100);
       } else {
-          alertCard.style.transition = "3s";
-          alertCard.classList.remove("show");
+        alertCard.style.transition = "3s";
+        alertCard.classList.remove("show");
       }
     },
   },
   methods: {
-    ...mapGetters(["getShowErrorValue"]),
     ...mapActions(["changeShowErrorAction"]),
 
     hideAlert() {
@@ -106,12 +102,12 @@ export default {
     align-items: center;
     font-size: 1.5rem;
 
-    h2{
-        align-self: flex-end;
-        margin-right: 37px;
+    h2 {
+      align-self: flex-end;
+      margin-right: 37px;
     }
-    h5{
-        align-self: flex-end;
+    h5 {
+      align-self: flex-end;
     }
   }
 
@@ -142,17 +138,17 @@ export default {
     }
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 991px){
-.alert-error.show{
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .alert-error.show {
     top: 20%;
     left: 50%;
     transform: translateX(-50%);
+  }
 }
-}
-@media only screen and (max-width: 575px){
-.alert-error.show{
+@media only screen and (max-width: 575px) {
+  .alert-error.show {
     left: 50%;
     transform: translateX(-50%);
-}
+  }
 }
 </style>

@@ -1,6 +1,5 @@
 <template>
   <div>
-      home
       <MessageCard/>
       <SuccessAlert/>
       <ErrorAlert/>

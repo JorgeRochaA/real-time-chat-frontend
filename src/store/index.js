@@ -8,8 +8,7 @@ export default new Vuex.Store({
     messages: [
       {
         username: "Jorge_CR",
-        message:
-          "Hello People!",
+        message: "Hello People!",
         userPicture: "https://i.ibb.co/dDJnkGD/emoji-1.png",
         date: "15/9/2021",
         usernameColor: "#2196F3",
@@ -27,6 +26,8 @@ export default new Vuex.Store({
     },
     showSuccessAlert: false,
     showErrorAlert: false,
+    loginOrSignUp: true, // if this is true is goin to show the login form on Login view (Login.vue)
+    // opposite case is goin to show the register form
   },
   mutations: {
     changeShowSuccessValue(state, payload) {
@@ -35,20 +36,24 @@ export default new Vuex.Store({
     changeShowErrorValue(state, payload) {
       state.showErrorAlert = payload;
     },
+    changeLoginOrSignUpValue(state, payload) {
+      state.loginOrSignUp = payload;
+    },
   },
   actions: {
-    changeShowSuccessAction(state, payload) {
-      state.commit("changeShowSuccessValue", payload);
+    changeShowSuccessAction({ commit }, payload) {
+      commit("changeShowSuccessValue", payload);
     },
-    changeShowErrorAction(state, payload) {
-      state.commit("changeShowErrorValue", payload);
+    changeShowErrorAction({ commit }, payload) {
+      commit("changeShowErrorValue", payload);
+    },
+    changeLoginOrSignUpAction({ commit }, payload) {
+      commit("changeLoginOrSignUpValue", payload);
     },
   },
   modules: {},
   getters: {
     getMessages: (state) => state.messages,
     getUser: (state) => state.user,
-    getShowSuccessValue: (state) => state.showSuccessAlert,
-    getShowErrorValue: (state) => state.showErrorAlert
   },
 });
