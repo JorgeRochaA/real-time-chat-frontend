@@ -6,7 +6,7 @@
     </div>
     <div class="alert-message">
       <h2>Error!</h2>
-      <h5>something happend</h5>
+      <h5>{{ errorMessage }}</h5>
     </div>
     <div class="close-alert">
       <div class="exit">
@@ -30,7 +30,7 @@ export default {
     this.show;
   },
   computed: {
-    ...mapState(["showErrorAlert"]),
+    ...mapState(["showErrorAlert", "errorMessage"]),
   },
   watch: {
     show: function() {

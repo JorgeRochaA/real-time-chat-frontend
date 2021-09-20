@@ -13,13 +13,19 @@
         </div>
         <input type="password" placeholder="Password" />
       </div>
-      <input type="submit" value="Login" />
+      {{ this.$store.state.showErrorAlert }}
+      <input type="submit" value="Login" v-on:click="showAlert()" />
     </form>
   </div>
 </template>
 <script>
 export default {
   name: "loginForm",
+  methods: {
+    showAlert(){
+      this.$store.commit("changeShowErrorValue",true);
+    }
+  },
 };
 </script>
 <style scoped lang="scss">

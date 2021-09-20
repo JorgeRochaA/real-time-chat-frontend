@@ -1,37 +1,131 @@
 <template>
   <div class="register-form-container">
-    <form class="register-form">
+    <form class="register-form" @submit.prevent>
       <div class="input-container">
         <div class="input-logo">
           <i class="fas fa-id-card-alt"></i>
         </div>
-        <input type="text" placeholder="Username">
+        <input type="text" placeholder="Username" v-model="newUser.username" />
       </div>
       <div class="input-container">
         <div class="input-logo">
           <i class="fas fa-envelope"></i>
         </div>
-        <input type="email" placeholder="Email">
+        <input type="email" placeholder="Email" v-model="newUser.email" />
       </div>
       <div class="input-container">
         <div class="input-logo">
           <i class="fas fa-lock"></i>
         </div>
-        <input type="password" placeholder="Password">
+        <input
+          type="password"
+          placeholder="Password"
+          v-model="newUser.password"
+        />
       </div>
       <input type="submit" value="Sign Up" />
+      <input type="submit" v-on:click="createUser()" value="Sign Up" />
     </form>
   </div>
 </template>
 <script>
+import axios from "axios";
+import { mapActions } from "vuex";
 export default {
   name: "registerForm",
+  data() {
+    return {
+      newUser: {
+        username: "",
+        email: "",
+        password: "",
+        username_color: "",
+        user_picture: "",
+      },
+    };
+  },
+  methods: {
+    ...mapActions(["changeErrorMessageAction", "changeShowErrorAction"]),
+    // this two methods are for create a random hex color to put in the varible username_color
+    generateLetter() {
+      let letters = [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+      ];
+      let number = (Math.random() * 15).toFixed(0);
+      return letters[number];
+    },
+    colorHEX() {
+      let color = "";
+      for (let i = 0; i < 6; i++) {
+        color = color + this.generateLetter();
+      }
+      return "#" + color;
+    },
+    randomUserPicture() {
+      let picturesUrl = [
+        "../assets/userPictures/cat.png",
+        "../assets/userPictures/dog.png",
+        "../assets/userPictures/fox.png",
+        "../assets/userPictures/lion.png",
+        "../assets/userPictures/panda.png",
+        "../assets/userPictures/robot.png",
+        "../assets/userPictures/tiger.png",
+      ];
+      let randomNumber = Math.floor(Math.random() * (7 - 0) + 0);
+      this.newUser.user_picture = picturesUrl[randomNumber];
+    },
+    createUser() {
+      this.newUser.username_color = this.colorHEX();
+      this.randomUserPicture();
+      let config = {
+        method: "post",
+        url: "http://127.0.0.1:8001/api/register?",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        data: this.newUser,
+      };
+      axios(config)
+        .then((response) => {
+          let { error } = response.data;
+          if (error) {
+            this.changeErrorMessageAction(error);
+            this.changeShowErrorAction(true);
+            setTimeout(() => {
+              this.changeShowErrorAction(false);
+            }, 3000);
+          } else {
+            console.log(response.data);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
 <style scoped lang="scss">
 .register-form-container {
   height: 70%;
   width: 90%;
+
   .register-form {
     height: 100%;
     width: 100%;
