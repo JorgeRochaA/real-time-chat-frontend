@@ -127,7 +127,7 @@ export default {
     }
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (min-width: 100px) and (max-width: 991px) {
   #alert-error.show {
     top: 20%;
     left: 50%;

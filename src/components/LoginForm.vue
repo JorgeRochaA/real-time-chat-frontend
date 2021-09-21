@@ -5,21 +5,63 @@
         <div class="input-logo">
           <i class="fas fa-envelope"></i>
         </div>
-        <input type="email" placeholder="Email" />
+        <input type="email" placeholder="Email" v-model="user.email" />
       </div>
       <div class="input-container">
         <div class="input-logo">
           <i class="fas fa-lock"></i>
         </div>
-        <input type="password" placeholder="Password" />
+        <input type="password" placeholder="Password" v-model="user.password" />
       </div>
-      <input type="submit" value="Login"/>
+      <input type="submit" value="Login" v-on:click="login()" />
     </form>
   </div>
 </template>
 <script>
+import axios from "axios";
+import { mapActions } from "vuex";
 export default {
   name: "loginForm",
+  data() {
+    return {
+      user: {
+        email: "",
+        password: "",
+      },
+    };
+  },
+  methods: {
+    ...mapActions(["changeErrorMessageAction", "changeShowErrorAction"]),
+    login() {
+      let data = this.user;
+      let config = {
+        method: "post",
+        url: "http://127.0.0.1:8001/api/login?",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        data: data,
+      };
+      axios(config)
+        .then((response) => {
+          let { error } = response.data;
+          if (error) {
+            this.changeErrorMessageAction(error);
+            this.changeShowErrorAction(true);
+            setTimeout(() => {
+              this.changeShowErrorAction(false);
+            }, 5000);
+          } else {
+            localStorage.setItem("user", JSON.stringify(response.data));
+            this.$router.push("/");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
 };
 </script>
 <style scoped lang="scss">

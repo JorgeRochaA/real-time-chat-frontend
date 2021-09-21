@@ -92,6 +92,7 @@ export default {
     createUser() {
       this.newUser.username_color = this.colorHEX();
       this.randomUserPicture();
+      let data = this.newUser;
       let config = {
         method: "post",
         url: "http://127.0.0.1:8001/api/register?",
@@ -99,7 +100,7 @@ export default {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-        data: this.newUser,
+        data: data,
       };
       axios(config)
         .then((response) => {

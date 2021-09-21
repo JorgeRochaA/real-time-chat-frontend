@@ -124,7 +124,7 @@ export default {
     }
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 991px) {
+@media only screen and (min-width: 100px) and (max-width: 991px) {
   
   #alert-success.show {
     top: 20%;
