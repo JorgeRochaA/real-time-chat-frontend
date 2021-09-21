@@ -21,9 +21,6 @@ export default new Vuex.Store({
         usernameColor: "#6200EA",
       },
     ],
-    user: {
-      name: "Jorge_CR",
-    },
     showSuccessAlert: false,
     showErrorAlert: false,
     errorMessage: "",
@@ -61,6 +58,5 @@ export default new Vuex.Store({
   modules: {},
   getters: {
     getMessages: (state) => state.messages,
-    getUser: (state) => state.user,
   },
 });

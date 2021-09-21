@@ -11,7 +11,7 @@
         <div class="input-logo">
           <i class="fas fa-envelope"></i>
         </div>
-        <input type="email" placeholder="Email" v-model="newUser.email" />
+        <input type="text" placeholder="Email" v-model="newUser.email" />
       </div>
       <div class="input-container">
         <div class="input-logo">
@@ -23,7 +23,7 @@
           v-model="newUser.password"
         />
       </div>
-      <input type="submit" value="Sign Up" />
+      {{ this.$store.state.user }}
       <input type="submit" v-on:click="createUser()" value="Sign Up" />
     </form>
   </div>
@@ -109,9 +109,14 @@ export default {
             this.changeShowErrorAction(true);
             setTimeout(() => {
               this.changeShowErrorAction(false);
-            }, 3000);
+            }, 5000);
           } else {
-            console.log(response.data);
+            this.newUser.username = "";
+            this.newUser.email = "";
+            this.newUser.password = "";
+            let { user } = response.data;
+            localStorage.setItem("user", JSON.stringify(user));
+            this.$router.push("/");
           }
         })
         .catch((err) => {
@@ -164,7 +169,6 @@ export default {
           font-size: 1.5rem;
         }
       }
-      input[type="email"],
       input[type="password"],
       input[type="text"] {
         width: 80%;

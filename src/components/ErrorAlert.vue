@@ -1,5 +1,5 @@
 <template>
-  <div class="alert-error" id="alert-error">
+  <div :class="this.showAlert" id="alert-error">
     <div class="alert-images">
       <img src="../assets/alert-images/fail.svg" alt="fail-icon" />
       <img src="../assets/alert-images/redBubbles.svg" alt="bubbles-icon" />
@@ -20,28 +20,14 @@
 import { mapState, mapActions } from "vuex";
 export default {
   name: "errorAlert",
-  data() {
-    return {
-      show: "",
-    };
-  },
-  mounted() {
-    this.show = this.showErrorAlert;
-    this.show;
-  },
   computed: {
     ...mapState(["showErrorAlert", "errorMessage"]),
-  },
-  watch: {
-    show: function() {
-      let alertCard = document.getElementById("alert-error");
-      if (this.show == true) {
-        setTimeout(function() {
-          alertCard.classList.add("show");
-        }, 100);
+    showAlert() {
+      let showErrorAlertValue = this.showErrorAlert;
+      if (showErrorAlertValue) {
+        return "show";
       } else {
-        alertCard.style.transition = "3s";
-        alertCard.classList.remove("show");
+        return "";
       }
     },
   },
@@ -50,19 +36,18 @@ export default {
 
     hideAlert() {
       this.changeShowErrorAction(false);
-      this.show = "";
     },
   },
 };
 </script>
 
 <style scoped lang="scss">
-.alert-error.show {
+#alert-error.show {
   top: 10%;
   left: 50%;
   transform: translateX(-50%);
 }
-.alert-error {
+#alert-error {
   height: 150px;
   width: 450px;
   background-color: #fc2e20;
@@ -94,7 +79,7 @@ export default {
 
   .alert-message {
     height: 150px;
-    width: 60%;
+    width: 70%;
     color: white;
     display: flex;
     flex-direction: column;
@@ -103,28 +88,32 @@ export default {
     font-size: 1.5rem;
 
     h2 {
-      align-self: flex-end;
-      margin-right: 37px;
+      position: relative;
+      z-index: 5;
     }
     h5 {
-      align-self: flex-end;
+      position: relative;
+      z-index: 5;
     }
   }
 
   .close-alert {
     height: 100%;
-    width: 20%;
+    width: 10%;
     display: flex;
     justify-content: flex-end;
 
+
     .exit {
       height: 40%;
-      width: 70%;
+      width: 100%;
       color: white;
       display: flex;
       justify-content: center;
       align-items: center;
       font-size: 2.5rem;
+      margin-right: 10px;
+
 
       i {
         transition: 0.5s;
@@ -139,16 +128,19 @@ export default {
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-  .alert-error.show {
+  #alert-error.show {
     top: 20%;
     left: 50%;
     transform: translateX(-50%);
   }
 }
 @media only screen and (max-width: 575px) {
-  .alert-error.show {
+  #alert-error.show {
     left: 50%;
     transform: translateX(-50%);
+  }
+  #alert-error{
+    width: 90%;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="alert-success" id="alert-success">
+  <div :class="this.showAlert" id="alert-success">
     <div class="alert-images">
       <img src="../assets/alert-images/success.svg" alt="success-icon" />
       <img src="../assets/alert-images/greenBubbles.svg" alt="bubbles-icon" />
@@ -20,28 +20,14 @@
 import { mapState, mapActions } from "vuex";
 export default {
   name: "successAlert",
-  data() {
-    return {
-      show: "",
-    };
-  },
-  mounted() {
-    this.show = this.showSuccessAlert;
-    this.show;
-  },
   computed: {
-...mapState(["showSuccessAlert"]),
-  },
-  watch: {
-    show: function () {
-      let alertCard = document.getElementById("alert-success");
-      if (this.show == true) {
-        setTimeout(function () {
-          alertCard.classList.add("show");
-        }, 100);
+    ...mapState(["showSuccessAlert"]),
+    showAlert() {
+      let showErrorAlertValue = this.showErrorAlert;
+      if (showErrorAlertValue) {
+        return "show";
       } else {
-          alertCard.style.transition = "3s";
-          alertCard.classList.remove("show");
+        return "";
       }
     },
   },
@@ -50,19 +36,18 @@ export default {
 
     hideAlert() {
       this.changeShowSuccessAction(false);
-      this.show = "";
     },
   },
 };
 </script>
 
 <style scoped lang="scss">
-.alert-success.show {
+#alert-success.show {
   top: 10%;
   left: 50%;
   transform: translateX(-50%);
 }
-.alert-success {
+#alert-success {
   height: 150px;
   width: 450px;
   background-color: #04a65b;
@@ -102,12 +87,12 @@ export default {
     align-items: center;
     font-size: 1.5rem;
 
-    h2{
-        align-self: flex-end;
-        margin-right: 37px;
+    h2 {
+      align-self: flex-end;
+      margin-right: 37px;
     }
-    h5{
-        align-self: flex-end;
+    h5 {
+      align-self: flex-end;
     }
   }
 
@@ -139,17 +124,18 @@ export default {
     }
   }
 }
-@media only screen and (min-width: 768px) and (max-width: 991px){
-.alert-success.show{
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  
+  #alert-success.show {
     top: 20%;
     left: 50%;
     transform: translateX(-50%);
+  }
 }
-}
-@media only screen and (max-width: 575px){
-.alert-success.show{
+@media only screen and (max-width: 575px) {
+  #alert-success.show {
     left: 50%;
     transform: translateX(-50%);
-}
+  }
 }
 </style>
