@@ -42,11 +42,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#alert-error.show {
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-}
 #alert-error {
   height: 150px;
   width: 450px;
@@ -126,6 +121,12 @@ export default {
       cursor: pointer;
     }
   }
+  
+  &.show {
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+}
 }
 @media only screen and (min-width: 100px) and (max-width: 991px) {
   #alert-error.show {
