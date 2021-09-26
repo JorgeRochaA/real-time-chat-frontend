@@ -53,7 +53,10 @@ export default {
               this.changeShowErrorAction(false);
             }, 5000);
           } else {
-            localStorage.setItem("user", JSON.stringify(response.data));
+            this.user.email = "";
+            this.user.password = "";
+            let { user } = response.data;
+            localStorage.setItem("user", JSON.stringify(user));
             this.$router.push("/");
           }
         })

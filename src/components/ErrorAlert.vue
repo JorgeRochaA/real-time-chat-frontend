@@ -98,7 +98,6 @@ export default {
     display: flex;
     justify-content: flex-end;
 
-
     .exit {
       height: 40%;
       width: 100%;
@@ -108,7 +107,6 @@ export default {
       align-items: center;
       font-size: 2.5rem;
       margin-right: 10px;
-
 
       i {
         transition: 0.5s;
@@ -121,12 +119,12 @@ export default {
       cursor: pointer;
     }
   }
-  
+
   &.show {
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-}
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 @media only screen and (min-width: 100px) and (max-width: 991px) {
   #alert-error.show {
@@ -136,12 +134,13 @@ export default {
   }
 }
 @media only screen and (max-width: 575px) {
-  #alert-error.show {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-  #alert-error{
+  #alert-error {
     width: 90%;
+
+    &.show {
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 }
 </style>

@@ -33,10 +33,7 @@ export default {
   data() {
     return {
       messages: [],
-      user: {
-        name: "",
-      },
-      colors: [],
+      user:[],
       message: {
         username: "Jorge_CR",
         message: "Hello People!",
@@ -48,19 +45,14 @@ export default {
   },
   mounted() {
     this.messages = this.getMessagesFromStore;
-    this.user = this.getUserFromStore;
-    this.generar();
   },
   computed: {
     getMessagesFromStore() {
       return this.getMessages();
     },
-    getUserFromStore() {
-      return this.getUser();
-    },
   },
   methods: {
-    ...mapGetters(["getMessages", "getUser"]),
+    ...mapGetters(["getMessages"]),
   },
 };
 </script>
