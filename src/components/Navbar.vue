@@ -1,6 +1,8 @@
 <template>
   <div class="navbar">
-      <h2>{{ user.username }}</h2>
+      <div class="username">
+       <h2 :style="{color: user.user_color}">{{ user.username }}</h2>
+      </div>
     <div class="logout">
       <div class="button" v-on:click="logout()">Logout</div>
     </div>
@@ -24,7 +26,6 @@ export default {
       
     getUser() {
       this.user = JSON.parse(localStorage.getItem("user"));
-      console.log(this.user.token);
     },
     logout() {
       let config = {
@@ -46,6 +47,8 @@ export default {
         })
         .catch((err) => {
           console.log(err);
+          localStorage.removeItem("user");
+          this.$router.push("/login");
         });
     },
   },
@@ -59,9 +62,10 @@ export default {
   box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
-  justify-content: flex-end;
+  align-items: center;
 
-  .logout {
+  .logout,
+  .username {
     height: 100px;
     width: 150px;
     display: flex;
