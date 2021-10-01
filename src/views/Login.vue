@@ -8,8 +8,8 @@
       <div class="form">
         <LoginOrRegister />
         <LoginForm v-if="this.loginOrSignUp" />
-        <RegisterForm v-else/>
-        <ErrorAlert/>
+        <RegisterForm v-else />
+        <ErrorAlert />
       </div>
     </div>
   </div>
@@ -18,8 +18,8 @@
 <script>
 import LoginOrRegister from "../components/LoginOrRegister.vue";
 import LoginForm from "../components/LoginForm.vue";
-import RegisterForm from '../components/RegisterForm.vue';
-import ErrorAlert from '../components/ErrorAlert.vue';
+import RegisterForm from "../components/RegisterForm.vue";
+import ErrorAlert from "../components/ErrorAlert.vue";
 import { mapState } from "vuex";
 export default {
   name: "Login",
@@ -30,7 +30,7 @@ export default {
     ErrorAlert,
   },
   computed: {
-     ...mapState(['loginOrSignUp','showErrorAlert']),
+    ...mapState(["loginOrSignUp", "showErrorAlert"]),
   },
 };
 </script>
@@ -41,14 +41,16 @@ export default {
   width: 100%;
   background-color: #2196f3;
   display: flex;
+  justify-content: center;
   align-items: flex-end;
 
   .form-container {
     height: 80%;
-    width: 100%;
+    width: 70%;
     background-color: white;
     border-radius: 30px 30px 0 0;
     position: relative;
+
     .app-logo {
       width: 100px;
       height: 100px;
@@ -62,10 +64,12 @@ export default {
       display: flex;
       justify-content: center;
       align-items: center;
+
       img {
         height: 70%;
         width: 70%;
       }
+      
     }
     .spacer {
       height: 20%;
@@ -80,8 +84,16 @@ export default {
     }
   }
 }
+@media screen and (max-width: 700px) and (orientation: portrait) {
+  .form-container {
+    width: 90% !important;
+  }
+}
 @media (min-width: 320px) and (orientation: landscape) and (max-width: 900px) {
   /* smartphones, tablets landscape*/
+  .login {
+    height: 700px;
+  }
   .form {
     margin-top: 50px;
     height: 375px !important;
