@@ -42,11 +42,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-#alert-success.show {
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-}
 #alert-success {
   height: 150px;
   width: 450px;
@@ -123,19 +118,28 @@ export default {
       color: #2c7721;
     }
   }
-}
-@media only screen and (min-width: 100px) and (max-width: 991px) {
-  
-  #alert-success.show {
-    top: 20%;
+
+  &.show {
+    top: 10%;
     left: 50%;
     transform: translateX(-50%);
   }
 }
+@media only screen and (min-width: 100px) and (max-width: 991px) {
+  #alert-success {
+    &.show {
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+}
 @media only screen and (max-width: 575px) {
-  #alert-success.show {
-    left: 50%;
-    transform: translateX(-50%);
+  #alert-success {
+    &.show {
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 }
 </style>

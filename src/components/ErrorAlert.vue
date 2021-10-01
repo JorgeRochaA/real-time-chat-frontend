@@ -127,10 +127,12 @@ export default {
   }
 }
 @media only screen and (min-width: 100px) and (max-width: 991px) {
-  #alert-error.show {
-    top: 20%;
-    left: 50%;
-    transform: translateX(-50%);
+  #alert-error {
+    &.show {
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 }
 @media only screen and (max-width: 575px) {
