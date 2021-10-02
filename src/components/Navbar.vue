@@ -115,4 +115,9 @@ export default {
     margin-right: 20px;
   }
 }
+@media screen and (max-width: 900px) and (orientation: landscape) {
+  .navbar{
+    display: none;
+  }
+}
 </style>

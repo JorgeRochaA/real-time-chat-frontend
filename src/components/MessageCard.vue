@@ -3,23 +3,26 @@
     <div class="card-container">
       <div class="card-info">
         <div class="username">
-          <h4>Jorge_CR</h4>
+          <h4>{{ message.username }}</h4>
         </div>
         <div class="info">
-          <h4>10:45 PM | 12/09/2021</h4>
+          <h4>{{ message.hour }} | {{ message.date }}</h4>
         </div>
       </div>
-      <div class="card-message-container">
+      <div :class="isMessageUser" id="card-message-container">
         <div class="username-photo-container">
-          <div class="photo" :style="{ 'background-color': '#2196F3' }">
-            <img src="https://i.ibb.co/dDJnkGD/emoji-1.png" alt="user-photo" />
+          <div
+            class="photo"
+            :style="{ 'background-color': message.username_color }"
+          >
+            <img :src="message.user_picture" alt="user-photo" />
           </div>
         </div>
-        <div class="message" :style="{ 'background-color': '#2196F3' }">
-          <p>
-            Harum dolorem officia minus. Fugiat minima consequatur laboriosam
-            labore impedit commodi praesentium
-          </p>
+        <div
+          class="message"
+          :style="{ 'background-color': message.username_color }"
+        >
+          <p>{{ message.message }}</p>
         </div>
       </div>
     </div>
@@ -27,45 +30,17 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
 export default {
   name: "messageCard",
-  data() {
-    return {
-      messages: [],
-      user:[],
-      message: {
-        username: "Jorge_CR",
-        message: "Hello People!",
-        userPicture: "https://i.ibb.co/dDJnkGD/emoji-1.png",
-        date: "15/9/2021",
-        usernameColor: "#2196F3",
-      },
-    };
-  },
-  mounted() {
-    this.messages = this.getMessagesFromStore;
-  },
-  computed: {
-    getMessagesFromStore() {
-      return this.getMessages();
-    },
-  },
-  methods: {
-    ...mapGetters(["getMessages"]),
+  props: {
+    message: null,
+    isMessageUser: null,
   },
 };
 </script>
 
 <style scoped lang="scss">
-.card-message-container.user {
-  flex-direction: row-reverse;
-}
 .card-container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   height: 150px;
   width: 450px;
 
@@ -94,7 +69,7 @@ export default {
       }
     }
   }
-  .card-message-container {
+  #card-message-container {
     height: 70%;
     width: 100%;
     display: flex;
@@ -138,11 +113,19 @@ export default {
         align-items: center;
       }
     }
+
+    &.user {
+      flex-direction: row-reverse;
+    }
   }
 }
 @media screen and (max-width: 500px) {
   .card-container {
     width: 95%;
+    background-color: yellowgreen;
+    left: 0;
+    right: 0;
+    margin: auto;
     .username-photo-container {
       width: 25% !important;
       justify-content: flex-start !important;
@@ -152,7 +135,7 @@ export default {
       }
     }
     .message {
-      width: 75% !important;
+      width: 100% !important;
     }
   }
 }

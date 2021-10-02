@@ -40,6 +40,7 @@ export default {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  background-color: white;
   input {
     height: 50%;
     width: 90%;

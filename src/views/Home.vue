@@ -2,7 +2,7 @@
   <div>
     <Loader id="loader" />
     <Navbar />
-    <MessageCard />
+     <MessagesContainer/>
     <SuccessAlert />
     <ErrorAlert />
     <SendMessageInput/>
@@ -12,7 +12,7 @@
 <script>
 import Loader from "../components/Loader.vue";
 import Navbar from "../components/Navbar.vue";
-import MessageCard from "../components/MessageCard.vue";
+import MessagesContainer from "../components/MessagesContainer.vue";
 import SuccessAlert from "../components/SuccessAlert.vue";
 import ErrorAlert from "../components/ErrorAlert.vue";
 import SendMessageInput from "../components/SendMessageInput.vue";
@@ -21,7 +21,7 @@ export default {
   components: {
     Loader,
     Navbar,
-    MessageCard,
+    MessagesContainer,
     SuccessAlert,
     ErrorAlert,
     SendMessageInput,

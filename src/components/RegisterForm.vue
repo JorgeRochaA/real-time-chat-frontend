@@ -83,7 +83,7 @@ export default {
         "../assets/userPictures/fox.png",
         "../assets/userPictures/lion.png",
         "../assets/userPictures/panda.png",
-        "../assets/userPictures/robot.png",
+        "https://i.ibb.co/HP0N2d7/robot.png",
         "../assets/userPictures/tiger.png",
       ];
       let randomNumber = Math.floor(Math.random() * (7 - 0) + 0);
