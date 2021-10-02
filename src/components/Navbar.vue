@@ -1,10 +1,10 @@
 <template>
   <div class="navbar">
       <div class="username">
-       <h2 :style="{color: user.user_color}">{{ user.username }}</h2>
+       <h2 :style="{color:user.username_color}">{{ user.username }}</h2>
       </div>
     <div class="logout">
-      <div class="button" v-on:click="logout()">Logout</div>
+      <div class="button" v-on:click="logout()"><i class="fas fa-sign-out-alt"></i></div>
     </div>
   </div>
 </template>
@@ -67,14 +67,13 @@ export default {
   .logout,
   .username {
     height: 100px;
-    width: 150px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 
     .button {
       height: 50px;
-      width: 105px;
+      width: 50px;
       box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
         rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
       display: flex;
@@ -87,7 +86,7 @@ export default {
       font-size: 1.2rem;
       overflow: hidden;
       color: #fc2e20;
-      border-radius: 5px;
+      border-radius: 10px;
 
       &::before {
         content: "";
@@ -108,6 +107,12 @@ export default {
         }
       }
     }
+  }
+  .username{
+    margin-left: 20px;
+  }
+  .logout{
+    margin-right: 20px;
   }
 }
 </style>
