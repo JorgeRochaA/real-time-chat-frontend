@@ -1,29 +1,15 @@
 <template>
   <div>
     <div class="card-container">
-      <div class="card-info">
-        <div class="username">
-          <h4>{{ message.username }}</h4>
-        </div>
-        <div class="info">
-          <h4>{{ message.hour }} | {{ message.date }}</h4>
-        </div>
+      <div class="info-container">
+        <div class="triangle" :style="{'border-bottom-color': message.username_color}"></div>
+        <h4>{{ message.username }}</h4>
       </div>
-      <div :class="isMessageUser" id="card-message-container">
-        <div class="username-photo-container">
-          <div
-            class="photo"
-            :style="{ 'background-color': message.username_color }"
-          >
-            <img :src="message.user_picture" alt="user-photo" />
-          </div>
-        </div>
-        <div
-          class="message"
-          :style="{ 'background-color': message.username_color }"
-        >
-          <p>{{ message.message }}</p>
-        </div>
+      <div
+        class="message-container"
+        :style="{ 'background-color': message.username_color }"
+      >
+        <p>{{ message.message }}</p>
       </div>
     </div>
   </div>
@@ -34,7 +20,6 @@ export default {
   name: "messageCard",
   props: {
     message: null,
-    isMessageUser: null,
   },
 };
 </script>
@@ -43,100 +28,56 @@ export default {
 .card-container {
   height: 150px;
   width: 450px;
+  margin-top: 10px;
+  position: relative;
 
-  .card-info {
-    height: 30%;
+  .info-container {
+    height: 50px;
     width: 100%;
     display: flex;
+    justify-content: flex-end;
+    align-items: center;
 
-    .username {
-      height: 100%;
-      width: 30%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .triangle {
+      position: absolute;
+      top: -4px;
+      right: 0;
+      width: 0;
+      height: 0;
+      border-right: 40px solid transparent;
+      border-top: 40px solid transparent;
+      border-left: 40px solid transparent;
+      border-bottom: 40px solid transparent;
+      z-index: -1;
     }
-    .info {
-      height: 100%;
-      width: 70%;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
 
-      h4 {
-        margin-right: 10px;
-        color: #aba8a5;
-      }
+    h4 {
+      margin-right: 5px;
+      margin-bottom: 10px;
     }
   }
-  #card-message-container {
-    height: 70%;
-    width: 100%;
+  .message-container {
+    height: 100px;
+    border-radius: 15px;
     display: flex;
+    justify-content: center;
+    align-items: center;
 
-    .username-photo-container {
-      height: 100%;
-      width: 30%;
+    p {
+      color: white;
+      width: 90%;
+      height: 90%;
+      word-break: break-all;
       display: flex;
       justify-content: center;
       align-items: center;
-
-      .photo {
-        height: 85%;
-        width: 70%;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        img {
-          height: 90%;
-          width: 90%;
-        }
-      }
-    }
-    .message {
-      height: 100%;
-      width: 70%;
-      border-radius: 15px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-
-      p {
-        height: 80%;
-        width: 90%;
-        color: white;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    }
-
-    &.user {
-      flex-direction: row-reverse;
     }
   }
 }
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 500px) and (orientation: portrait) {
   .card-container {
-    width: 95%;
-    background-color: yellowgreen;
-    left: 0;
-    right: 0;
-    margin: auto;
-    .username-photo-container {
-      width: 25% !important;
-      justify-content: flex-start !important;
-      .photo {
-        height: 75% !important;
-        width: 80% !important;
-      }
-    }
-    .message {
-      width: 100% !important;
-    }
+    width: 90vw;
+    margin-left: 0;
   }
 }
 </style>

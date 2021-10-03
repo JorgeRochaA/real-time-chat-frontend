@@ -59,7 +59,6 @@ export default {
   height: 100px;
   width: 100%;
   background-color: white;
-  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;

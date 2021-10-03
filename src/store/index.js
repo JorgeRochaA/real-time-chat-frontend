@@ -16,7 +16,7 @@ export default new Vuex.Store({
       },
       {
         username: "Vipper Code",
-        message: "Hello Jorge!",
+        message:"adviodnvsndlvnsldvnslkdvnsldvnslkdnvklsdnvklsndvklsdnvlksdnvklsdnvsdvnsdvnksldvnklsdnvksdvsdvzdvsdvsdvsvsvsdvsdvsdvsdvsdvsdvsdvsdvsdvfnbkldfnbkldfnb",
         user_picture: "https://i.ibb.co/dDJnkGD/emoji-1.png",
         date: "16/9/2021",
         hour:"10:45 PM",

@@ -1,10 +1,12 @@
 <template>
   <div class="messageContainer">
     <div v-for="(message, index) in messages" :key="index">
-      <div v-if="message.username == user.username" class="userCard">
-        <MessageCard :message="message" :isMessageUser="isMessageUser" />
+      <div class="user-message" v-if="'Jorge_CRr' === message.username">
+        <MessageCard :message="message" />
       </div>
-      <MessageCard class="card" v-else :message="message" />
+      <div class="others-message" v-else>
+        <MessageCard :message="message" />
+      </div>
     </div>
   </div>
 </template>
@@ -20,7 +22,6 @@ export default {
     return {
       messages: [],
       user: [],
-      isMessageUser: "user",
     };
   },
   mounted() {
@@ -36,34 +37,50 @@ export default {
     ...mapGetters(["getMessages"]),
     getUser() {
       this.user = JSON.parse(localStorage.getItem("user"));
+      console.log(this.user);
     },
   },
 };
 </script>
 <style scoped lang="scss">
 .messageContainer {
-    padding: 20px 0;
+  padding-bottom: 30px;
   height: 70vh;
   width: 100%;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
 
-  .userCard {
+  .others-message {
+    margin-left: 50px;
+  }
+
+  .user-message {
     display: flex;
     justify-content: flex-end;
     margin-right: 50px;
   }
-  .card {
-    margin-left: 50px;
+
+  &::-webkit-scrollbar {
+    display: none;
   }
 }
 @media screen and (max-width: 500px) and (orientation: portrait) {
-    .userCard{
-        margin-right: 0 !important;
+  .messageContainer {
+    align-items: center;
+
+    .others-message {
+      margin-left: 0;
     }
-    .card{
-        margin-left: 0 !important;
+
+    .user-message {
+      margin-right: 0px;
     }
+  }
+}
+@media screen and (max-width: 1000px) and (orientation: landscape) {
+  .messageContainer {
+    padding-bottom: 50px;
+  }
 }
 </style>
