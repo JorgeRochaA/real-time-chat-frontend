@@ -7,6 +7,7 @@
   </div>
 </template>
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "sendMessageInput",
   data() {
@@ -15,14 +16,19 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["changeShowSuccessAction","changeShowErrorAction"]),
     sendMessage() {
       if (!this.message == "") {
         let plane = document.getElementById("plane");
         plane.classList.add("send");
         this.message = "";
+        this.changeShowSuccessAction(true);
         setTimeout(() => {
           plane.classList.remove("send");
         }, 1000);
+    setTimeout(() => {
+      this.changeShowSuccessAction(false);
+    }, 3000);
       } else {
         alert("fill the fields");
       }

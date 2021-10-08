@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     messages: [
       {
-        username: "Jorge_CRr",
+        username: "Jorge_CR",
         message: "Hello People!",
         user_picture: "https://i.ibb.co/HP0N2d7/robot.png",
         date: "15/9/2021",

@@ -57,7 +57,6 @@ export default {
             this.user.email = "";
             this.user.password = "";
             let { user } = response.data;
-            console.log(JSON.stringify(user));
             localStorage.setItem("user", JSON.stringify(user));
             this.$router.push("/");
           }

@@ -40,7 +40,6 @@ export default {
         email: "",
         password: "",
         username_color: "",
-        user_picture: "",
       },
     };
   },
@@ -76,22 +75,8 @@ export default {
       }
       return "#" + color;
     },
-    randomUserPicture() {
-      let picturesUrl = [
-        "../assets/userPictures/cat.png",
-        "../assets/userPictures/dog.png",
-        "../assets/userPictures/fox.png",
-        "../assets/userPictures/lion.png",
-        "../assets/userPictures/panda.png",
-        "https://i.ibb.co/HP0N2d7/robot.png",
-        "../assets/userPictures/tiger.png",
-      ];
-      let randomNumber = Math.floor(Math.random() * (7 - 0) + 0);
-      this.newUser.user_picture = picturesUrl[randomNumber];
-    },
     createUser() {
       this.newUser.username_color = this.colorHEX();
-      this.randomUserPicture();
       let data = this.newUser;
       let config = {
         method: "post",

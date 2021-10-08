@@ -1,5 +1,5 @@
 <template>
-  <div :class="this.showAlert" id="alert-success">
+  <div :class="this.showSusccessAlertClass" id="alert-success">
     <div class="alert-images">
       <img src="../assets/alert-images/success.svg" alt="success-icon" />
       <img src="../assets/alert-images/greenBubbles.svg" alt="bubbles-icon" />
@@ -22,9 +22,9 @@ export default {
   name: "successAlert",
   computed: {
     ...mapState(["showSuccessAlert"]),
-    showAlert() {
-      let showErrorAlertValue = this.showErrorAlert;
-      if (showErrorAlertValue) {
+    showSusccessAlertClass() {
+      let showSuccessAlertValue = this.showSuccessAlert;
+      if (showSuccessAlertValue) {
         return "show";
       } else {
         return "";
@@ -33,7 +33,6 @@ export default {
   },
   methods: {
     ...mapActions(["changeShowSuccessAction"]),
-
     hideAlert() {
       this.changeShowSuccessAction(false);
     },
@@ -53,7 +52,7 @@ export default {
   top: 10%;
   left: 10000px;
   transition: 1s;
-
+z-index: 9;
   .alert-images {
     height: 100%;
     width: 20%;

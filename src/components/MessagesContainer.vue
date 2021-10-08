@@ -1,7 +1,7 @@
 <template>
-  <div class="messageContainer">
+  <div class="messageContainer" id="messageContainer">
     <div v-for="(message, index) in messages" :key="index">
-      <div class="user-message" v-if="'Jorge_CRr' === message.username">
+      <div class="user-message" v-if="user.username === message.username">
         <MessageCard :message="message" />
       </div>
       <div class="others-message" v-else>
@@ -27,6 +27,7 @@ export default {
   mounted() {
     this.messages = this.getMessagesFromStore;
     this.getUser();
+    this.scrollBottom();
   },
   computed: {
     getMessagesFromStore() {
@@ -37,7 +38,13 @@ export default {
     ...mapGetters(["getMessages"]),
     getUser() {
       this.user = JSON.parse(localStorage.getItem("user"));
-      console.log(this.user);
+    },
+    scrollBottom() {
+     setTimeout(() => {
+        let container = document.getElementById("messageContainer");
+      let height = container.clientHeight;
+      container.scrollTo(0, height * 5);
+     }, 1000);
     },
   },
 };
