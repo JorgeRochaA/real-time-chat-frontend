@@ -15,7 +15,6 @@
       </div>
       <input type="submit" value="Login" v-on:click="login()" />
     </form>
-    <button v-on:click="login2()">login2</button>
   </div>
 </template>
 <script>
@@ -65,11 +64,6 @@ export default {
           console.log(err);
         });
     },
-    login2(){
-      let user = {"id":2,"token":"lAOTW5DOIwljaibY0GyCO5W6K4HEUlYYrCkBerEzYaFnKb3FpyCGKaQamg1vVdHTwYRObzXsFW2DdUC817ZfJqxnHtuHVWRwwxTM","username":"Jorge_CRr","username_color":"#c263e0","user_picture":"https://i.ibb.co/HP0N2d7/robot.png"}
-      localStorage.setItem("user",user);
-       this.$router.push("/");
-    }
   },
 };
 </script>

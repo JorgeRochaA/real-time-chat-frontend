@@ -5,80 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    messages: [
-      {
-        username: "Jorge_CR",
-        message: "Hello People!",
-        user_picture: "https://i.ibb.co/HP0N2d7/robot.png",
-        date: "15/9/2021",
-        hour:"10:45 PM",
-        username_color: "#a6740f",
-      },
-      {
-        username: "Vipper Code",
-        message:"adviodnvsndlvnsldvnslkdvnsldvnslkdnvklsdnvklsndvklsdnvlksdnvklsdnvsdvnsdvnksldvnklsdnvksdvsdvzdvsdvsdvsvsvsdvsdvsdvsdvsdvsdvsdvsdvsdvfnbkldfnbkldfnb",
-        user_picture: "https://i.ibb.co/dDJnkGD/emoji-1.png",
-        date: "16/9/2021",
-        hour:"10:45 PM",
-        username_color: "#6200EA",
-      },
-      {
-        username: "Vipper Code",
-        message: "Hello Jorge!",
-        user_picture: "https://i.ibb.co/dDJnkGD/emoji-1.png",
-        date: "16/9/2021",
-        hour:"10:45 PM",
-        username_color: "#6200EA",
-      },
-      {
-        username: "Vipper Code",
-        message: "Hello Jorge!",
-        user_picture: "https://i.ibb.co/dDJnkGD/emoji-1.png",
-        date: "16/9/2021",
-        hour:"10:45 PM",
-        username_color: "#6200EA",
-      },
-      {
-        username: "Vipper Code",
-        message: "Hello Jorge!",
-        user_picture: "https://i.ibb.co/dDJnkGD/emoji-1.png",
-        date: "16/9/2021",
-        hour:"10:45 PM",
-        username_color: "#6200EA",
-      },
-      {
-        username: "Vipper Code",
-        message: "Hello Jorge!",
-        user_picture: "https://i.ibb.co/dDJnkGD/emoji-1.png",
-        date: "16/9/2021",
-        hour:"10:45 PM",
-        username_color: "#6200EA",
-      },
-      {
-        username: "Vipper Code",
-        message: "Hello Jorge!",
-        user_picture: "https://i.ibb.co/dDJnkGD/emoji-1.png",
-        date: "16/9/2021",
-        hour:"10:45 PM",
-        username_color: "#6200EA",
-      },
-      {
-        username: "Vipper Code",
-        message: "Hello Jorge!",
-        user_picture: "https://i.ibb.co/dDJnkGD/emoji-1.png",
-        date: "16/9/2021",
-        hour:"10:45 PM",
-        username_color: "#6200EA",
-      },
-      {
-        username: "Vipper Code",
-        message: "Hello Jorge!",
-        user_picture: "https://i.ibb.co/dDJnkGD/emoji-1.png",
-        date: "16/9/2021",
-        hour:"10:45 PM",
-        username_color: "#6200EA",
-      },
-    ],
+    messages: [],
     showSuccessAlert: false,
     showErrorAlert: false,
     errorMessage: "",
@@ -98,6 +25,9 @@ export default new Vuex.Store({
     changeLoginOrSignUpValue(state, payload) {
       state.loginOrSignUp = payload;
     },
+    changeMessagesValue(state, payload) {
+      state.messages = payload;
+    },
   },
   actions: {
     changeShowSuccessAction({ commit }, payload) {
@@ -112,9 +42,10 @@ export default new Vuex.Store({
     changeLoginOrSignUpAction({ commit }, payload) {
       commit("changeLoginOrSignUpValue", payload);
     },
+    changeMessagesAction({ commit }, payload) {
+      commit("changeMessagesValue", payload);
+    },
   },
   modules: {},
-  getters: {
-    getMessages: (state) => state.messages,
-  },
+  getters: {},
 });

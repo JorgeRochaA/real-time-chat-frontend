@@ -1,6 +1,10 @@
 <template>
   <div class="sendMessage">
-    <input type="text" v-model="message" placeholder="  Write Something..." />
+    <input
+      type="text"
+      v-model="messageInfo.message"
+      placeholder="  Write Something..."
+    />
     <div class="button" v-on:click="sendMessage()">
       <i class="fas fa-paper-plane" id="plane"></i>
     </div>
@@ -8,30 +12,117 @@
 </template>
 <script>
 import { mapActions } from "vuex";
+import axios from "axios";
 export default {
   name: "sendMessageInput",
   data() {
     return {
-      message: "",
+      messageInfo: {
+        message: "",
+        date: "",
+        hour: "",
+        username_id: "",
+        token: "",
+      },
     };
   },
   methods: {
-    ...mapActions(["changeShowSuccessAction","changeShowErrorAction"]),
+    ...mapActions(["changeShowSuccessAction", "changeMessagesAction"]),
+      scrollBottom() {
+      let container = document.getElementById("messageContainer");
+      let height = container.clientHeight;
+      container.scrollTo(0, height * 5);
+    },
+    cleanUserForm() {
+      this.messageInfo.message = "";
+      this.messageInfo.date = "";
+      this.messageInfo.hour = "";
+      this.messageInfo.username_id = "";
+      this.messageInfo.token = "";
+    },
+    getDate() {
+      const date = new Date();
+      let day = date.getDate();
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear();
+      this.messageInfo.date = `${day}/${month}/${year}`;
+    },
+    getHour() {
+      const date = new Date();
+      let hour = date.getHours();
+      let minutes = date.getMinutes();
+      var ampm = hour >= 12 ? "PM" : "AM";
+      hour = hour % 12;
+      hour = hour ? hour : 12; // the hour '0' should be '12'
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      this.messageInfo.hour = `${hour}:${minutes}${ampm}`;
+    },
     sendMessage() {
-      if (!this.message == "") {
-        let plane = document.getElementById("plane");
-        plane.classList.add("send");
-        this.message = "";
-        this.changeShowSuccessAction(true);
-        setTimeout(() => {
-          plane.classList.remove("send");
-        }, 1000);
-    setTimeout(() => {
-      this.changeShowSuccessAction(false);
-    }, 3000);
+      let user = JSON.parse(localStorage.getItem("user"));
+      if (user == null) {
+        this.$router.push("/login");
       } else {
-        alert("fill the fields");
+        let config = {
+          method: "post",
+          url: "http://127.0.0.1:8001/api/message/create?",
+          headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${user.token}`,
+          },
+          data: this.messageInfo,
+        };
+        if (!this.messageInfo.message == "") {
+          let plane = document.getElementById("plane");
+          plane.classList.add("send");
+          this.getDate();
+          this.getHour();
+          this.messageInfo.token = user.token;
+          this.messageInfo.username_id = user.id;
+          setTimeout(() => {
+            plane.classList.remove("send");
+          }, 1000);
+          axios(config)
+            .then((response) => {
+              let { success } = response.data;
+              if (success) {
+                this.cleanUserForm();
+                this.changeShowSuccessAction(true);
+                this.getMessages();
+                setTimeout(() => {
+                  this.changeShowSuccessAction(false);
+                }, 3000);
+              } else {
+                console.log(response.data);
+              }
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else {
+          alert("fill the fields");
+        }
       }
+    },
+    getMessages() {
+      let user = JSON.parse(localStorage.getItem("user"));
+      let config = {
+        method: "get",
+        url: "http://127.0.0.1:8001/api/message/get",
+        headers: {
+          Accept: "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+      };
+      axios(config)
+        .then((response) => {
+          this.changeMessagesAction(response.data);
+          setTimeout(() => {
+            this.scrollBottom();
+          }, 100);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };
@@ -98,8 +189,8 @@ export default {
   }
 }
 @media screen and (max-width: 500px) and (orientation: portrait) {
-  input{
-      width: 80% !important;
+  input {
+    width: 80% !important;
   }
 }
 </style>

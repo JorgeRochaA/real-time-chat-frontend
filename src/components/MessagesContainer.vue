@@ -1,6 +1,6 @@
 <template>
   <div class="messageContainer" id="messageContainer">
-    <div v-for="(message, index) in messages" :key="index">
+    <div v-for="(message, index) in this.messages" :key="index">
       <div class="user-message" v-if="user.username === message.username">
         <MessageCard :message="message" />
       </div>
@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-import { mapGetters } from "vuex";
+import { mapState } from "vuex";
 import MessageCard from "../components/MessageCard.vue";
 export default {
   name: "messagesContainer",
@@ -20,31 +20,18 @@ export default {
   },
   data() {
     return {
-      messages: [],
       user: [],
     };
   },
   mounted() {
-    this.messages = this.getMessagesFromStore;
     this.getUser();
-    this.scrollBottom();
   },
-  computed: {
-    getMessagesFromStore() {
-      return this.getMessages();
-    },
+  computed:{
+      ...mapState(["messages"]),
   },
   methods: {
-    ...mapGetters(["getMessages"]),
     getUser() {
       this.user = JSON.parse(localStorage.getItem("user"));
-    },
-    scrollBottom() {
-     setTimeout(() => {
-        let container = document.getElementById("messageContainer");
-      let height = container.clientHeight;
-      container.scrollTo(0, height * 5);
-     }, 1000);
     },
   },
 };
@@ -57,6 +44,7 @@ export default {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  scroll-behavior: smooth;
 
   .others-message {
     margin-left: 50px;
