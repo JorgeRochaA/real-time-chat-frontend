@@ -28,6 +28,9 @@ export default new Vuex.Store({
     changeMessagesValue(state, payload) {
       state.messages = payload;
     },
+    addMessageValue(state, payload) {
+      state.messages.push(payload);
+    },
   },
   actions: {
     changeShowSuccessAction({ commit }, payload) {
@@ -44,6 +47,9 @@ export default new Vuex.Store({
     },
     changeMessagesAction({ commit }, payload) {
       commit("changeMessagesValue", payload);
+    },
+    addMessageValueAction({ commit }, payload) {
+      commit("addMessageValue", payload);
     },
   },
   modules: {},

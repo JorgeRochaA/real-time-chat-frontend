@@ -27,7 +27,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["changeShowSuccessAction", "changeMessagesAction"]),
+    ...mapActions(["changeShowSuccessAction"]),
       scrollBottom() {
       let container = document.getElementById("messageContainer");
       let height = container.clientHeight;
@@ -87,7 +87,6 @@ export default {
               if (success) {
                 this.cleanUserForm();
                 this.changeShowSuccessAction(true);
-                this.getMessages();
                 setTimeout(() => {
                   this.changeShowSuccessAction(false);
                 }, 3000);
@@ -102,27 +101,6 @@ export default {
           alert("fill the fields");
         }
       }
-    },
-    getMessages() {
-      let user = JSON.parse(localStorage.getItem("user"));
-      let config = {
-        method: "get",
-        url: "http://127.0.0.1:8001/api/message/get",
-        headers: {
-          Accept: "application/json",
-          Authorization: `Bearer ${user.token}`,
-        },
-      };
-      axios(config)
-        .then((response) => {
-          this.changeMessagesAction(response.data);
-          setTimeout(() => {
-            this.scrollBottom();
-          }, 100);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
     },
   },
 };
