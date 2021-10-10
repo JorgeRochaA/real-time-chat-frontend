@@ -28,11 +28,6 @@ export default {
   },
   methods: {
     ...mapActions(["changeShowSuccessAction"]),
-      scrollBottom() {
-      let container = document.getElementById("messageContainer");
-      let height = container.clientHeight;
-      container.scrollTo(0, height * 5);
-    },
     cleanUserForm() {
       this.messageInfo.message = "";
       this.messageInfo.date = "";
@@ -55,7 +50,7 @@ export default {
       hour = hour % 12;
       hour = hour ? hour : 12; // the hour '0' should be '12'
       minutes = minutes < 10 ? "0" + minutes : minutes;
-      this.messageInfo.hour = `${hour}:${minutes}${ampm}`;
+      this.messageInfo.hour = `${hour}:${minutes} ${ampm}`;
     },
     sendMessage() {
       let user = JSON.parse(localStorage.getItem("user"));
@@ -116,6 +111,7 @@ export default {
   justify-content: space-evenly;
   align-items: center;
   background-color: white;
+
   input {
     height: 50%;
     width: 90%;

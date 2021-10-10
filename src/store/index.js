@@ -8,7 +8,9 @@ export default new Vuex.Store({
     messages: [],
     showSuccessAlert: false,
     showErrorAlert: false,
+    showInfoAlert: false,
     errorMessage: "",
+    infoMessage: "Jorge left the room",
     loginOrSignUp: true, // if this is true is goin to show the login form on Login view (Login.vue)
     // opposite case is goin to show the register form
   },
@@ -19,8 +21,14 @@ export default new Vuex.Store({
     changeShowErrorValue(state, payload) {
       state.showErrorAlert = payload;
     },
+    changeShowInfoValue(state, payload) {
+      state.showInfoAlert = payload;
+    },
     changeErrorMessageValue(state, payload) {
       state.errorMessage = payload;
+    },
+    changeInfoMessageValue(state, payload) {
+      state.infoMessage = payload;
     },
     changeLoginOrSignUpValue(state, payload) {
       state.loginOrSignUp = payload;
@@ -29,7 +37,8 @@ export default new Vuex.Store({
       state.messages = payload;
     },
     addMessageValue(state, payload) {
-      state.messages.push(payload);
+      let newArray = [...state.messages, payload];
+      state.messages = newArray;
     },
   },
   actions: {
@@ -39,8 +48,14 @@ export default new Vuex.Store({
     changeShowErrorAction({ commit }, payload) {
       commit("changeShowErrorValue", payload);
     },
+    changeShowInfoAction({ commit }, payload) {
+      commit("changeShowInfoValue", payload);
+    },
     changeErrorMessageAction({ commit }, payload) {
       commit("changeErrorMessageValue", payload);
+    },
+    changeInfoMessageAction({ commit }, payload) {
+      commit("changeInfoMessageValue", payload);
     },
     changeLoginOrSignUpAction({ commit }, payload) {
       commit("changeLoginOrSignUpValue", payload);

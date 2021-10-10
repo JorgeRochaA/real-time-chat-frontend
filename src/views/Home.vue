@@ -5,6 +5,7 @@
     <MessagesContainer />
     <SuccessAlert />
     <ErrorAlert />
+    <InfoAlert/>
     <SendMessageInput />
   </div>
 </template>
@@ -15,6 +16,7 @@ import Navbar from "../components/Navbar.vue";
 import MessagesContainer from "../components/MessagesContainer.vue";
 import SuccessAlert from "../components/SuccessAlert.vue";
 import ErrorAlert from "../components/ErrorAlert.vue";
+import InfoAlert from "../components/InfoAlert.vue";
 import SendMessageInput from "../components/SendMessageInput.vue";
 import axios from "axios";
 import Pusher from "pusher-js";
@@ -27,6 +29,7 @@ export default {
     MessagesContainer,
     SuccessAlert,
     ErrorAlert,
+    InfoAlert,
     SendMessageInput,
   },
   mounted() {
@@ -43,12 +46,16 @@ export default {
       const channel = pusher.subscribe("chat");
       channel.bind("message", (data) =>{
         this.addMessageValueAction(JSON.parse(data.message));
+        data = null;
+       this.scrollBottom();
       });
     },
     scrollBottom() {
-      let container = document.getElementById("messageContainer");
+     setTimeout(() => {
+        let container = document.getElementById("messageContainer");
       let height = container.clientHeight;
       container.scrollTo(0, height * 5);
+     }, 1000);
     },
     getMessages() {
       let user = JSON.parse(localStorage.getItem("user"));
@@ -67,9 +74,7 @@ export default {
             let loader = document.getElementById("loader");
             loader.classList.add("hide");
             loader.style.display = "none";
-            setTimeout(() => {
               this.scrollBottom();
-            }, 100);
           })
           .catch((err) => {
             console.log(err);

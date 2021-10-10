@@ -69,7 +69,6 @@ export default {
         height: 70%;
         width: 70%;
       }
-      
     }
     .spacer {
       height: 20%;
