@@ -5,7 +5,7 @@
     <MessagesContainer />
     <SuccessAlert />
     <ErrorAlert />
-    <InfoAlert/>
+    <InfoAlert />
     <SendMessageInput />
   </div>
 </template>
@@ -32,30 +32,55 @@ export default {
     InfoAlert,
     SendMessageInput,
   },
+  data() {
+    return {
+      username: "",
+    };
+  },
   mounted() {
+    this.getUsername();
     this.getMessages();
     this.connectionPusher();
   },
   methods: {
-    ...mapActions(["changeMessagesAction", "addMessageValueAction"]),
+    ...mapActions([
+      "changeMessagesAction",
+      "addMessageValueAction",
+      "changeShowInfoAction",
+      "changeInfoMessageAction",
+    ]),
+    getUsername() {
+      let user = JSON.parse(localStorage.getItem("user"));
+      this.username = user.username;
+    },
     connectionPusher() {
       const pusher = new Pusher("86a4461e82a560d1d849", {
         cluster: "us2",
       });
 
       const channel = pusher.subscribe("chat");
-      channel.bind("message", (data) =>{
+      channel.bind("message", (data) => {
         this.addMessageValueAction(JSON.parse(data.message));
-        data = null;
-       this.scrollBottom();
+        this.scrollBottom();
+      });
+      channel.bind("info", (data) => {
+        let username = data.message.split(" ", 1);
+        if (this.username != username[0]) {
+          this.changeInfoMessageAction(data.message);
+          this.changeShowInfoAction(true);
+          setTimeout(() => {
+            this.changeInfoMessageAction("");
+            this.changeShowInfoAction(false);
+          }, 2000);
+        }
       });
     },
     scrollBottom() {
-     setTimeout(() => {
+      setTimeout(() => {
         let container = document.getElementById("messageContainer");
-      let height = container.clientHeight;
-      container.scrollTo(0, height * 5);
-     }, 1000);
+        let height = container.clientHeight;
+        container.scrollTo(0, height * 5);
+      }, 1000);
     },
     getMessages() {
       let user = JSON.parse(localStorage.getItem("user"));
@@ -74,7 +99,7 @@ export default {
             let loader = document.getElementById("loader");
             loader.classList.add("hide");
             loader.style.display = "none";
-              this.scrollBottom();
+            this.scrollBottom();
           })
           .catch((err) => {
             console.log(err);

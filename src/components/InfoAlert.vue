@@ -8,16 +8,11 @@
       <h2>Info!</h2>
       <h5>{{ infoMessage }}</h5>
     </div>
-    <div class="close-alert">
-      <div class="exit">
-        <i v-on:click="hideAlert()" class="fas fa-times"></i>
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState } from "vuex";
 export default {
   name: "infoAlert",
   computed: {
@@ -29,13 +24,6 @@ export default {
       } else {
         return "";
       }
-    },
-  },
-  methods: {
-    ...mapActions(["changeShowInfoAction"]),
-
-    hideAlert() {
-      this.changeShowInfoAction(false);
     },
   },
 };
@@ -91,34 +79,6 @@ export default {
     h5 {
       position: relative;
       z-index: 5;
-    }
-  }
-
-  .close-alert {
-    height: 100%;
-    width: 10%;
-    display: flex;
-    justify-content: flex-end;
-
-    .exit {
-      height: 40%;
-      width: 100%;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 2.5rem;
-      margin-right: 10px;
-
-      i {
-        transition: 0.5s;
-      }
-      &:hover {
-        color: #0f4c75;
-      }
-    }
-    &:hover {
-      cursor: pointer;
     }
   }
 
