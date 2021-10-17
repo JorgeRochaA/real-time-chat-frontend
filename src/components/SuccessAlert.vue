@@ -131,6 +131,7 @@ z-index: 9;
       left: 50%;
       transform: translateX(-50%);
     }
+    width: 98% !important;
   }
 }
 @media only screen and (max-width: 575px) {

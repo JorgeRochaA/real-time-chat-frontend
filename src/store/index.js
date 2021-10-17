@@ -10,7 +10,7 @@ export default new Vuex.Store({
     showErrorAlert: false,
     showInfoAlert: false,
     errorMessage: "",
-    infoMessage: "Jorge left the room",
+    infoMessage: "",
     loginOrSignUp: true, // if this is true is goin to show the login form on Login view (Login.vue)
     // opposite case is goin to show the register form
   },

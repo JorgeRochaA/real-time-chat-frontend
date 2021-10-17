@@ -38,7 +38,7 @@ export default {
   border-radius: 15px;
   display: flex;
   position: fixed;
-  top: 1000px;
+  top: 12000px;
   left: 50%;
   transform: translateX(-50%);
   transition: .5s;
