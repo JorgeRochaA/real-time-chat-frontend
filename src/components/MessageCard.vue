@@ -3,7 +3,8 @@
     <div class="card-container">
       <div class="info-container">
         <div class="triangle" :style="{'border-bottom-color': message.username_color}"></div>
-        <h4>{{ message.username }} </h4>
+        <h4 v-if="userMessage == true">Your Message</h4>
+         <h4 v-else>{{ message.username }} </h4>
         <h4>| {{ message.hour }}</h4>
       </div>
       <div
@@ -21,6 +22,7 @@ export default {
   name: "messageCard",
   props: {
     message: null,
+    userMessage: null
   },
 };
 </script>
