@@ -79,7 +79,7 @@ export default {
         let container = document.getElementById("messageContainer");
         let height = container.clientHeight;
         container.scrollTo(0, height * 5);
-      }, 1000);
+      }, 100);
     },
     getMessages() {
       let user = JSON.parse(localStorage.getItem("user"));
