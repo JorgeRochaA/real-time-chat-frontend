@@ -27,7 +27,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(["changeShowSuccessAction"]),
+    ...mapActions(["changeShowSuccessAction","changeErrorMessageAction", "changeShowErrorAction"]),
     cleanUserForm() {
       this.messageInfo.message = "";
       this.messageInfo.date = "";
@@ -93,7 +93,11 @@ export default {
               console.log(err);
             });
         } else {
-          alert("fill the fields");
+          this.changeErrorMessageAction("Fill All The Fields.");
+          this.changeShowErrorAction(true);
+          setTimeout(() => {
+            this.changeShowErrorAction(false);
+          }, 3000);
         }
       }
     },
