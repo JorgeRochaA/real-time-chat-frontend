@@ -1,8 +1,8 @@
 <template>
   <div class="messageContainer" id="messageContainer">
-    <div v-for="(message, index) in this.messages" :key="index">
+    <div v-for="(message, index) in this.getMessagesFromStore" :key="index">
       <div class="user-message" v-if="user.username === message.username">
-        <MessageCard :message="message" />
+        <MessageCard :message="message" :userMessage="true" />
       </div>
       <div class="others-message" v-else>
         <MessageCard :message="message" />
@@ -11,7 +11,7 @@
   </div>
 </template>
 <script>
-import { mapState } from "vuex";
+import { mapGetters } from "vuex";
 import MessageCard from "../components/MessageCard.vue";
 export default {
   name: "messagesContainer",
@@ -27,7 +27,7 @@ export default {
     this.getUser();
   },
   computed:{
-      ...mapState(["messages"]),
+      ...mapGetters(["getMessagesFromStore"]),
   },
   methods: {
     getUser() {
