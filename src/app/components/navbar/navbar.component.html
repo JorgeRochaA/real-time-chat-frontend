@@ -1,0 +1,13 @@
+<div class="navbar">
+  <a class="brand" [routerLink]="['/login']"
+    ><img src="https://www.jorgerocha.tk/img/chatLogo.9e77f9d4.png" alt="logo"
+  /></a>
+  <ul class="nav">
+    <li *ngIf="locationName == 'register'">
+      <a class="link" [routerLink]="['/login']">Login</a>
+    </li>
+    <li *ngIf="locationName == 'login'">
+      <a class="link" [routerLink]="['/register']">Register</a>
+    </li>
+  </ul>
+</div>

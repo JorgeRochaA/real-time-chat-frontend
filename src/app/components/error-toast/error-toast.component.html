@@ -1,0 +1,31 @@
+<div
+  class="error_toast"
+  [ngClass]="{
+    show: toastData.show
+  }"
+>
+  <div class="icons_container">
+    <img
+      class="icon"
+      src="../../../assets/toast/error-toast/error-icon.svg"
+      alt="icon"
+    />
+    <img
+      class="bubbles"
+      src="../../../assets/toast/error-toast/red-bubbles.svg"
+      alt="bubbles"
+    />
+  </div>
+  <div class="message_container">
+    <div class="title">{{ toastData.title }}</div>
+    <div class="message">{{ toastData.message }}</div>
+  </div>
+  <div class="close_container">
+    <img
+      (click)="onClick()"
+      class="close"
+      src="../../../assets/toast/close.svg"
+      alt="close"
+    />
+  </div>
+</div>

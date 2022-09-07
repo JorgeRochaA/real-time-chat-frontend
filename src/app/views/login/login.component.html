@@ -1,20 +1,15 @@
 <div class="container">
-  <div class="navbar">
-    <a class="brand" [routerLink]="['/login']"
-      ><img
-        src="https://www.jorgerocha.tk/img/chatLogo.9e77f9d4.png"
-        alt="logo"
-    /></a>
-    <ul class="nav">
-      <!-- <li><a class="register" [routerLink]="['/register']">Register</a></li> -->
-    </ul>
-  </div>
+  <app-navbar [locationName]="'login'"></app-navbar>
+  <app-error-toast
+    [toastData]="toastData"
+    (closeToastEvent)="closeToast($event)"
+  ></app-error-toast>
   <div class="main_container">
     <div class="banner">
       <div class="message">Sign In to Chat</div>
       <div class="register_here">
         if you don’t have an account yet you can
-        <a href=""> Register here! </a>
+        <a [routerLink]="['/register']"> Register here! </a>
       </div>
     </div>
     <form class="form" [formGroup]="loginForm">
@@ -26,6 +21,12 @@
           placeholder="Email"
           formControlName="email"
           autocomplete="off"
+          [ngClass]="{
+            'is-invalid':
+              (formControls.email.invalid &&
+                (formControls.email.dirty || formControls.email.touched)) ||
+              (submitted && formControls.email.errors?.required)
+          }"
         />
       </div>
       <div class="form-group">
@@ -36,6 +37,14 @@
           placeholder="Password"
           formControlName="password"
           autocomplete="off"
+          [ngClass]="{
+            'is-invalid':
+              (formControls.password.invalid &&
+                (formControls.password.dirty ||
+                  formControls.password.touched)) ||
+              (submitted && formControls.password.errors?.required) ||
+              formControls.password.errors?.password
+          }"
         />
       </div>
       <button type="submit" class="btn btn-default" (click)="login()">

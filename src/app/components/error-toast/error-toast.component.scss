@@ -1,0 +1,74 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap");
+.error_toast {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  height: 75px;
+  min-width: 275px;
+  background: #c72c41;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  transform: translateX(calc(100% + 30px));
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+  &.show {
+    transform: translateX(0%);
+  }
+  .icons_container {
+    height: 100%;
+    width: 75px;
+    .icon {
+      height: 50px;
+      position: absolute;
+      top: -25px;
+      left: 0;
+    }
+    .bubbles {
+      position: absolute;
+      height: 50px;
+      bottom: 0;
+      left: 0;
+      border-radius: 20px;
+    }
+  }
+
+  .message_container {
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    font-family: Poppins;
+    margin-bottom: 5px;
+    min-width: 150px;
+    .title {
+      font-size: 34px;
+      font-weight: 500;
+      line-height: 51px;
+      letter-spacing: -0.035em;
+    }
+    .message {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 18px;
+      letter-spacing: 0.02em;
+    }
+  }
+  .close_container {
+    height: 100%;
+    width: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    .close {
+      margin-top: 5px;
+      margin-right: 5px;
+      height: 20px;
+      cursor: pointer;
+    }
+  }
+}
