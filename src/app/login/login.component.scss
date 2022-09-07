@@ -1,0 +1,125 @@
+.container {
+  min-height: 97vh;
+  min-width: 97vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .navbar {
+    height: 65px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    .brand {
+      height: 50px;
+      width: 25%;
+      display: flex;
+      align-items: center;
+      img {
+        height: 40px;
+        margin-left: 75px;
+      }
+    }
+    .nav {
+      width: 75%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 25px;
+      list-style: none;
+      a {
+        text-decoration: none;
+        font-family: "Gilroy";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 17px;
+        line-height: 21px;
+        letter-spacing: 0.06em;
+        color: #4461f2;
+      }
+      .register {
+        margin-right: 75px;
+        padding: 7px 15px;
+        border-radius: 3px;
+        color: white;
+        background-color: #4461f2;
+        border: 2px solid transparent;
+        transition: 0.5s;
+        &:hover {
+          background-color: white;
+          color: #4461f2;
+          border: 2px solid #4461f2;
+        }
+      }
+    }
+  }
+  .main_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    gap: 350px;
+    .banner {
+      height: 281px;
+      max-width: 95%;
+      font-family: "Gilroy";
+      font-style: normal;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .message {
+        font-weight: 700;
+        font-size: 58px;
+        line-height: 77px;
+      }
+      .register_here {
+        width: 305px;
+        font-weight: 500;
+        font-size: 23px;
+        line-height: 28px;
+        a {
+          text-decoration: none;
+          color: #4461f2;
+        }
+      }
+    }
+    form {
+      height: 230px;
+      width: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: #ffffff;
+      gap: 15px;
+      input {
+        height: 45px;
+        width: 245px;
+        border: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+        text-indent: 10px;
+        &:focus {
+          outline: none !important;
+          border-color: rgba(0, 0, 0, 0.5);
+        }
+      }
+      button {
+        height: 45px;
+        width: 250px;
+        border: none;
+        background-color: #4461f2;
+        font-family: Gilroy;
+        font-size: 19px;
+        font-weight: 700;
+        letter-spacing: 0.09em;
+        color: white;
+        cursor: pointer;
+        transition: 0.5s;
+        border-radius: 3px;
+      }
+    }
+  }
+}

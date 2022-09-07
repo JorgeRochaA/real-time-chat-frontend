@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="navbar">
+    <a class="brand" [routerLink]="['/login']"
+      ><img
+        src="https://www.jorgerocha.tk/img/chatLogo.9e77f9d4.png"
+        alt="logo"
+    /></a>
+    <ul class="nav">
+      <!-- <li><a class="register" [routerLink]="['/register']">Register</a></li> -->
+    </ul>
+  </div>
+  <div class="main_container">
+    <div class="banner">
+      <div class="message">Sign In to Chat</div>
+      <div class="register_here">
+        if you don’t have an account yet you can
+        <a href=""> Register here! </a>
+      </div>
+    </div>
+    <form class="form" [formGroup]="loginForm">
+      <div class="form-group">
+        <input
+          type="email"
+          class="form-control"
+          name="email"
+          placeholder="Email"
+          formControlName="email"
+          autocomplete="off"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          placeholder="Password"
+          formControlName="password"
+          autocomplete="off"
+        />
+      </div>
+      <button type="submit" class="btn btn-default" (click)="login()">
+        Login
+      </button>
+    </form>
+  </div>
+</div>
