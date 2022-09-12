@@ -55,7 +55,6 @@
         }
         &:focus {
           outline: none !important;
-          border-color: rgba(0, 0, 0, 0.5);
           &::placeholder {
             color: initial;
           }

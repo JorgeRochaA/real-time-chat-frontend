@@ -91,9 +91,9 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['']);
       },
       error: (err) => {
-        console.log(err.error.error);
         this.toastData.message = err.error.error;
         this.toastData.show = true;
+        this.loginForm.reset();
         setTimeout(() => {
           this.toastData.show = false;
         }, 2000);
