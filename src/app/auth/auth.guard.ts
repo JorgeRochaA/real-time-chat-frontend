@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { CanActivate, Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private cookie: CookieService) {}
 
   redirect(flag: boolean): void {
     if (!flag) {
@@ -18,8 +19,8 @@ export class AuthGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    let user: boolean = !!localStorage.getItem('user');
-    this.redirect(user);
-    return user;
+    const userExist = this.cookie.check('user');
+    this.redirect(userExist);
+    return userExist;
   }
 }

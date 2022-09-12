@@ -87,7 +87,7 @@ export class LoginComponent implements OnInit {
     const formData = this.buildFormDataLogin();
     this.user.login(formData).subscribe({
       next: (res) => {
-        this.setUser(res);
+        this.user.setUser(res);
         this.router.navigate(['']);
       },
       error: (err) => {
@@ -99,9 +99,6 @@ export class LoginComponent implements OnInit {
         }, 2000);
       },
     });
-  }
-  setUser(user: UserResponse): void {
-    localStorage.setItem('user', JSON.stringify(user));
   }
   signUp(): void {}
 }
