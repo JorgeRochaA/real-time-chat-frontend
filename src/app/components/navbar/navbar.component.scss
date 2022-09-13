@@ -34,17 +34,35 @@
       color: #4461f2;
     }
     .link {
+      position: relative;
+      height: 42px;
+      width: 112px;
       margin-right: 75px;
       padding: 7px 15px;
-      border-radius: 3px;
-      color: white;
-      background-color: #4461f2;
-      border: 2px solid transparent;
-      transition: 0.5s;
+      color: #4461f2;
+
+      &::after {
+        content: "";
+        height: 0px;
+        width: 50%;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+        background-color: transparent;
+        border: 1.5px solid transparent;
+        border-radius: 10px;
+        transition: 0.2s;
+      }
       &:hover {
-        background-color: white;
-        color: #4461f2;
-        border: 2px solid #4461f2;
+        // background-color: white;
+        // color: #4461f2;
+        // border: 2px solid #4461f2;
+        &::after {
+          background-color: #4461f2;
+        }
       }
     }
   }
