@@ -1,4 +1,4 @@
-import { Toast } from './../../components/error-toast/models/toast';
+import { Toast } from '../../components/toast/models/toast';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
     title: 'Ups!',
     message: '',
     show: false,
+    type: '',
   };
   constructor(
     private formBuilder: FormBuilder,
@@ -93,7 +94,9 @@ export class LoginComponent implements OnInit {
       error: (err) => {
         this.toastData.message = err.error.error;
         this.toastData.show = true;
+        this.toastData.type = 'error';
         this.loginForm.reset();
+
         setTimeout(() => {
           this.toastData.show = false;
         }, 2000);

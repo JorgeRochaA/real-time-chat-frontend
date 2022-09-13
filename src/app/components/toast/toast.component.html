@@ -1,5 +1,5 @@
 <div
-  class="error_toast"
+  class="toast {{ toastData.type }}"
   [ngClass]="{
     show: toastData.show
   }"
@@ -7,12 +7,12 @@
   <div class="icons_container">
     <img
       class="icon"
-      src="../../../assets/toast/error-toast/error-icon.svg"
+      src="../../../assets/toast/{{ toastData.type }}.svg"
       alt="icon"
     />
     <img
       class="bubbles"
-      src="../../../assets/toast/error-toast/red-bubbles.svg"
+      src="../../../assets/toast/{{ toastData.type }}-bubbles.svg"
       alt="bubbles"
     />
   </div>

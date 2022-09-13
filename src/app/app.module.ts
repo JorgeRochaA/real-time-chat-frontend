@@ -2,7 +2,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { CookieService } from 'ngx-cookie-service';
-import { ErrorToastComponent } from './components/error-toast/error-toast.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './views/home/home.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -11,6 +10,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgModule } from '@angular/core';
 import { RegisterComponent } from './views/register/register.component';
 import { TokenInterceptor } from './auth/token.interceptor';
+import { ToastComponent } from './components/toast/toast.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +18,7 @@ import { TokenInterceptor } from './auth/token.interceptor';
     HomeComponent,
     NavbarComponent,
     RegisterComponent,
-    ErrorToastComponent,
+    ToastComponent,
   ],
   imports: [
     BrowserModule,

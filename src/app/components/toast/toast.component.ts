@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Toast } from './models/toast';
+
 @Component({
-  selector: 'app-error-toast',
-  templateUrl: './error-toast.component.html',
-  styleUrls: ['./error-toast.component.scss'],
+  selector: 'app-toast',
+  templateUrl: './toast.component.html',
+  styleUrls: ['./toast.component.scss'],
 })
-export class ErrorToastComponent implements OnInit {
+export class ToastComponent implements OnInit {
   @Input() toastData!: Toast;
   @Output() closeToastEvent = new EventEmitter<boolean>();
 
