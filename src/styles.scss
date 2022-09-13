@@ -1,1 +1,26 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+div.is-invalid {
+  color: #ed4c78;
+  font-family: "Poppins", sans-serif;
+}
+input {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+  text-indent: 10px;
+  height: 45px;
+  width: 245px;
+  border: none;
+  border-bottom: 1px solid rgba(60, 73, 92, 0.3);
+  &.is-invalid {
+    border-color: #ed4c78;
+  }
+  &:focus {
+    outline: none !important;
+    &::placeholder {
+      color: initial;
+    }
+  }
+}

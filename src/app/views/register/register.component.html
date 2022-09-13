@@ -1,2 +1,51 @@
-<app-navbar [locationName]="'register'"></app-navbar>
-<div class="container"></div>
+<div class="container">
+  <app-navbar [locationName]="'register'"></app-navbar>
+  <div class="main_container">
+    <div class="banner">
+      <div class="message_container">
+        <div class="message">Real Time Chat</div>
+        <div class="slogan">create an account to start using this app</div>
+      </div>
+      <img src="../../../assets/register/man-falling.svg" alt="man" />
+    </div>
+    <form class="form">
+      <div class="form-group">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Username"
+          autocomplete="off"
+        />
+        <div class="is-invalid mt-1">Username already in use.</div>
+      </div>
+      <div class="form-control">
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Email"
+          autocomplete="off"
+        />
+        <div class="is-invalid mt-1">Email already in use.</div>
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Password"
+          autocomplete="off"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          class="form-control"
+          placeholder="Confirm Password"
+          autocomplete="off"
+        />
+      </div>
+      <button type="submit" class="btn btn-default" (click)="signUp()">
+        Create Account
+      </button>
+    </form>
+  </div>
+</div>
