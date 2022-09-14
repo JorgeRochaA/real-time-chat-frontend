@@ -2,7 +2,6 @@ import { Toast } from '../../components/toast/models/toast';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserResponse } from './models/user';
 import { UserService } from './services/user.service';
 Router;
 @Component({
@@ -17,7 +16,7 @@ export class LoginComponent implements OnInit {
     title: 'Ups!',
     message: '',
     show: false,
-    type: '',
+    type: 'error',
   };
   constructor(
     private formBuilder: FormBuilder,
@@ -43,41 +42,8 @@ export class LoginComponent implements OnInit {
     return formData;
   }
 
-  buildFormDataSignUp(): void {}
-
-  colorHEX(): string {
-    let color = '';
-    for (let i = 0; i < 6; i++) {
-      color = color + this.generateLetter();
-    }
-    return '#' + color;
-  }
-
   closeToast(value: boolean): void {
     this.toastData.show = value;
-  }
-
-  generateLetter(): string {
-    let letters = [
-      'a',
-      'b',
-      'c',
-      'd',
-      'e',
-      'f',
-      '0',
-      '1',
-      '2',
-      '3',
-      '4',
-      '5',
-      '6',
-      '7',
-      '8',
-      '9',
-    ];
-    let number = parseInt((Math.random() * 15).toFixed(0));
-    return letters[number];
   }
 
   login(): void {
@@ -103,5 +69,4 @@ export class LoginComponent implements OnInit {
       },
     });
   }
-  signUp(): void {}
 }

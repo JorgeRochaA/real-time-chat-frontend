@@ -1,9 +1,10 @@
+<app-toast
+  [toastData]="toastData"
+  (closeToastEvent)="closeToast($event)"
+></app-toast>
 <div class="container">
   <app-navbar [locationName]="'login'"></app-navbar>
-  <app-toast
-    [toastData]="toastData"
-    (closeToastEvent)="closeToast($event)"
-  ></app-toast>
+
   <div class="main_container">
     <div class="banner">
       <div class="message">Sign In to Chat</div>
