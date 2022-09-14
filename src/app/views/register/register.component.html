@@ -8,15 +8,26 @@
       </div>
       <img src="../../../assets/register/man-falling.svg" alt="man" />
     </div>
-    <form class="form">
+    <form class="form" [formGroup]="registerForm">
       <div class="form-group">
         <input
           type="text"
           class="form-control"
           placeholder="Username"
           autocomplete="off"
+          formControlName="username"
+          [ngClass]="{
+            'is-invalid':
+              (formControls.username.invalid &&
+                (formControls.username.dirty ||
+                  formControls.username.touched)) ||
+              (submitted && formControls.username.errors?.required)
+          }"
+          (click)="focus('username')"
         />
-        <div class="is-invalid mt-1">Username already in use.</div>
+        <div class="is-invalid" *ngIf="usernameError">
+          Username already in use.
+        </div>
       </div>
       <div class="form-control">
         <input
@@ -24,8 +35,16 @@
           class="form-control"
           placeholder="Email"
           autocomplete="off"
+          formControlName="email"
+          [ngClass]="{
+            'is-invalid':
+              (formControls.email.invalid &&
+                (formControls.email.dirty || formControls.email.touched)) ||
+              (submitted && formControls.email.errors?.required)
+          }"
+          (click)="focus('email')"
         />
-        <div class="is-invalid mt-1">Email already in use.</div>
+        <div *ngIf="emailError" class="is-invalid">Email already in use.</div>
       </div>
       <div class="form-group">
         <input
@@ -33,6 +52,14 @@
           class="form-control"
           placeholder="Password"
           autocomplete="off"
+          formControlName="password"
+          [ngClass]="{
+            'is-invalid':
+              (formControls.password.invalid &&
+                (formControls.password.dirty ||
+                  formControls.password.touched)) ||
+              (submitted && formControls.password.errors?.required)
+          }"
         />
       </div>
       <div class="form-group">
@@ -41,7 +68,21 @@
           class="form-control"
           placeholder="Confirm Password"
           autocomplete="off"
+          formControlName="confirmPassword"
+          [ngClass]="{
+            'is-invalid':
+              (formControls.confirmPassword.invalid &&
+                (formControls.confirmPassword.dirty ||
+                  formControls.confirmPassword.touched)) ||
+              (submitted && formControls.confirmPassword.errors?.required)
+          }"
         />
+        <div
+          *ngIf="formControls.confirmPassword.errors?.mustMatch"
+          class="is-invalid ml-10"
+        >
+          Passwords don't match.
+        </div>
       </div>
       <button type="submit" class="btn btn-default" (click)="signUp()">
         Create Account
