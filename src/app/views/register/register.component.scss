@@ -75,9 +75,10 @@
   .container {
     .main_container {
       flex-direction: row;
+      align-items: flex-end;
       .banner {
         align-items: flex-start;
-        margin-bottom: 100px;
+        margin-bottom: 75px;
       }
       form {
         margin-top: 0;
