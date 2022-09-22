@@ -17,13 +17,15 @@ export class TokenInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     const userExist = this.cookie.check('user');
-
     if (userExist) {
-      const { access_token } = JSON.parse(this.cookie.get('user'));
-      if (access_token) {
+      const {
+        user: { token },
+      } = JSON.parse(this.cookie.get('user'));
+      console.log(token);
+      if (token) {
         request = request.clone({
           setHeaders: {
-            Authorization: `Bearer ${access_token}`,
+            Authorization: `Bearer ${token}`,
           },
         });
         return next.handle(request);

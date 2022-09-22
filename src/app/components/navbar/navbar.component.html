@@ -10,4 +10,10 @@
       <a class="link" [routerLink]="['/register']">Register</a>
     </li>
   </ul>
+  <div class="mat-menu" *ngIf="userLogged" [matMenuTriggerFor]="menu">
+    {{ username }}
+  </div>
+  <mat-menu #menu="matMenu">
+    <button (click)="logout()" mat-menu-item>LogOut</button>
+  </mat-menu>
 </div>

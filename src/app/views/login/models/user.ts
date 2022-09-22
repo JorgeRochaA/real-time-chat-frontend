@@ -4,3 +4,7 @@ export interface UserResponse {
   username: string;
   username_color: string;
 }
+
+export interface LogoutResponse {
+  success: string;
+}
