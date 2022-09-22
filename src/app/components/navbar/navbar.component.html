@@ -10,9 +10,18 @@
       <a class="link" [routerLink]="['/register']">Register</a>
     </li>
   </ul>
-  <div class="mat-menu" *ngIf="userLogged" [matMenuTriggerFor]="menu">
+
+  <div *ngIf="userLogged" class="collapse-menu">
     {{ username }}
+    <button
+      mat-icon-button
+      [matMenuTriggerFor]="menu"
+      aria-label="Example icon-button with a menu"
+    >
+      <mat-icon>more_vert</mat-icon>
+    </button>
   </div>
+
   <mat-menu #menu="matMenu">
     <button (click)="logout()" mat-menu-item>LogOut</button>
   </mat-menu>

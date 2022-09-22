@@ -64,7 +64,7 @@
       }
     }
   }
-  .mat-menu {
+  .collapse-menu {
     margin-right: 50px;
     font-family: "Gilroy";
     font-style: normal;
@@ -73,6 +73,14 @@
     line-height: 21px;
     letter-spacing: 0.06em;
     color: #4461f2;
-    cursor: pointer;
+    display: flex;
+    align-items: center;
+    button {
+      width: 25px;
+      display: grid;
+      place-content: center;
+      border: none;
+      cursor: pointer;
+    }
   }
 }

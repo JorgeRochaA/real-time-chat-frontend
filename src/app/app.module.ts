@@ -7,12 +7,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './views/home/home.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './views/login/login.component';
+import { MatMenuModule } from '@angular/material/menu';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NgModule } from '@angular/core';
 import { RegisterComponent } from './views/register/register.component';
 import { ToastComponent } from './components/toast/toast.component';
 import { TokenInterceptor } from './auth/token.interceptor';
-import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { MatMenuModule } from '@angular/material/menu';
     HttpClientModule,
     BrowserAnimationsModule,
     MatMenuModule,
+    MatIconModule,
   ],
   providers: [
     CookieService,
