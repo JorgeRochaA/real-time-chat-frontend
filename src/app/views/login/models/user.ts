@@ -8,3 +8,8 @@ export interface UserResponse {
 export interface LogoutResponse {
   success: string;
 }
+
+export interface UserData {
+  username: string;
+  username_color: string;
+}
