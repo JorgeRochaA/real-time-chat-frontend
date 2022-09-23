@@ -1,5 +1,5 @@
+import { MessageDisplay } from './../../views/home/interfaces/message';
 import { Component, Input, OnInit } from '@angular/core';
-import { Message } from 'src/app/views/home/interfaces/message';
 
 @Component({
   selector: 'app-message',
@@ -7,7 +7,7 @@ import { Message } from 'src/app/views/home/interfaces/message';
   styleUrls: ['./message.component.scss'],
 })
 export class MessageComponent implements OnInit {
-  @Input() message!: Message;
+  @Input() message!: MessageDisplay;
   constructor() {}
 
   ngOnInit(): void {}

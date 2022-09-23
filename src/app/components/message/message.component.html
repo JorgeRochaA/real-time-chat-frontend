@@ -1,8 +1,15 @@
-<div
-  class="message"
-  [ngStyle]="{
-    'background-color': message.username_color
-  }"
->
-  {{ message.message }}
+<div class="message">
+  <div
+    class="message_text"
+    [ngClass]="message.justify"
+    [ngStyle]="{
+      'background-color': message.username_color
+    }"
+  >
+    <div
+      class="triangle"
+      [ngStyle]="{ 'border-top-color': message.username_color }"
+    ></div>
+    {{ message.message }}
+  </div>
 </div>

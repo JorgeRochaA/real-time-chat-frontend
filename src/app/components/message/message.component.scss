@@ -1,8 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap");
 .message {
-  height: 130px;
-  width: 843px;
-  left: 165px;
-  top: 293px;
-  border-radius: 20px;
-  background-color: #1d1b26;
+  display: flex;
+  flex-direction: column;
+  width: 95vw;
+  .message_text {
+    min-height: 50px;
+    width: 275px;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 34px;
+    color: #ffffff;
+    word-wrap: break-word;
+    position: relative;
+    .triangle {
+      position: absolute;
+      top: 0;
+      width: 0;
+      height: 0;
+      margin: auto;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-top: 20px solid transparent;
+    }
+    &.right {
+      align-self: flex-end;
+      margin-right: 10px;
+      .triangle {
+        right: -15px;
+      }
+    }
+    &.left {
+      align-self: flex-start;
+      margin-left: 10px;
+      .triangle {
+        left: -15px;
+      }
+    }
+  }
 }
