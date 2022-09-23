@@ -14,6 +14,7 @@ import { RegisterComponent } from './views/register/register.component';
 import { ToastComponent } from './components/toast/toast.component';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { MatIconModule } from '@angular/material/icon';
+import { MessageComponent } from './components/message/message.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +23,7 @@ import { MatIconModule } from '@angular/material/icon';
     NavbarComponent,
     RegisterComponent,
     ToastComponent,
+    MessageComponent,
   ],
   imports: [
     BrowserModule,

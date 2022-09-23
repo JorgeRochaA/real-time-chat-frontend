@@ -1,5 +1,11 @@
 <div class="home_container">
   <app-navbar></app-navbar>
-  <div class="messages_container">messages</div>
+  <div class="messages_container">
+    <app-message
+      class="message"
+      *ngFor="let message of messages"
+      [message]="message"
+    ></app-message>
+  </div>
   <div class="input_container"></div>
 </div>
