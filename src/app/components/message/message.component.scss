@@ -16,6 +16,11 @@
     color: #ffffff;
     word-wrap: break-word;
     position: relative;
+    .username {
+      position: absolute;
+      top: -30px;
+      left: -5px;
+    }
     .triangle {
       position: absolute;
       top: 0;
