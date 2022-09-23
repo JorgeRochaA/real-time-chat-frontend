@@ -7,6 +7,7 @@
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 10;
   .brand {
     height: 50px;
     width: 25%;
@@ -80,6 +81,7 @@
       display: grid;
       place-content: center;
       border: none;
+      background-color: transparent;
       cursor: pointer;
     }
   }
