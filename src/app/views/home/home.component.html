@@ -1,3 +1,7 @@
+<app-toast
+  [toastData]="toastData"
+  (closeToastEvent)="closeToast($event)"
+></app-toast>
 <div class="home_container">
   <app-navbar></app-navbar>
   <div class="messages_container" id="messagesContainer">
@@ -7,5 +11,16 @@
       [message]="message"
     ></app-message>
   </div>
-  <div class="input_container"></div>
+  <div class="input_container">
+    <div class="sendMessage">
+      <input
+        type="text"
+        [(ngModel)]="messageFromInput"
+        placeholder="  Write Something..."
+      />
+      <div class="button" (click)="sendMessage()">
+        <i class="fas fa-paper-plane" id="plane"></i>
+      </div>
+    </div>
+  </div>
 </div>

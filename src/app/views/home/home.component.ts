@@ -1,8 +1,8 @@
-import { Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
-import { Message, MessageDisplay } from './interfaces/message';
-import { MessageService } from './services/message.service';
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import { Message } from './interfaces/message';
+import { MessageService } from './services/message.service';
+import { Toast } from 'src/app/components/toast/models/toast';
 import Pusher from 'pusher-js';
 @Component({
   selector: 'app-home',
@@ -12,16 +12,32 @@ import Pusher from 'pusher-js';
 export class HomeComponent implements OnInit {
   messages: any = [];
   username!: string;
-  constructor(
-    private message: MessageService,
-    private cookie: CookieService,
-    private router: Router
-  ) {}
+  id!: number;
+  messageFromInput: string = '';
+  toastData: Toast = {
+    title: 'Ups!',
+    message: '',
+    show: false,
+    type: 'error',
+  };
+  constructor(private message: MessageService, private cookie: CookieService) {}
 
   ngOnInit(): void {
-    this.getUserID();
+    this.getUserData();
     this.connectPusher();
     this.getMessages();
+  }
+
+  animatePlane(): void {
+    let plane = document.getElementById('plane') as HTMLElement;
+    plane.classList.add('send');
+    setTimeout(() => {
+      plane.classList.remove('send');
+    }, 1000);
+  }
+
+  closeToast(value: boolean): void {
+    this.toastData.show = value;
   }
 
   getMessages(): void {
@@ -55,10 +71,18 @@ export class HomeComponent implements OnInit {
       this.scrollBottom();
     });
   }
-  getUserID(): void {
+  getDate(): string {
+    const date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
+  getUserData(): void {
     const {
-      user: { username },
+      user: { username, id },
     } = JSON.parse(this.cookie.get('user'));
+    this.id = id;
     this.username = username;
   }
 
@@ -92,10 +116,44 @@ export class HomeComponent implements OnInit {
     let messagesContainer = document.getElementById(
       'messagesContainer'
     ) as HTMLElement;
-    // messagesContainer.style.backgroundColor = 'red';
     setTimeout(() => {
       let height = messagesContainer.clientHeight;
       messagesContainer.scrollTo(0, height * 5);
     }, 100);
+  }
+
+  sendMessage(): void {
+    const {
+      user: { token },
+    } = JSON.parse(this.cookie.get('user'));
+    const time = new Date();
+    let message = {
+      username_id: this.id,
+      message: this.messageFromInput,
+      date: this.getDate(),
+      hour: time.toLocaleString('en-US', {
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+      }),
+      token: token,
+    };
+    if (this.messageFromInput.trim() !== '') {
+      this.message.sendMessage(message).subscribe({
+        next: (data) => {
+          this.animatePlane();
+          this.messageFromInput = '';
+        },
+        error: (err) => {
+          console.log(err);
+        },
+      });
+    } else {
+      this.toastData.message = 'cant send an empty message';
+      this.toastData.show = true;
+      setTimeout(() => {
+        this.toastData.show = false;
+      }, 2000);
+    }
   }
 }
