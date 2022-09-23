@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { Message } from './interfaces/message';
@@ -20,7 +21,11 @@ export class HomeComponent implements OnInit {
     show: false,
     type: 'error',
   };
-  constructor(private message: MessageService, private cookie: CookieService) {}
+  constructor(
+    private message: MessageService,
+    private cookie: CookieService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.getUserData();
@@ -50,6 +55,7 @@ export class HomeComponent implements OnInit {
         console.log(err);
         if (err.status === 401) {
           this.cookie.delete('user');
+          this.router.navigate(['/login']);
         }
       },
     });
