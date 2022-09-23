@@ -21,7 +21,7 @@ export class TokenInterceptor implements HttpInterceptor {
       const {
         user: { token },
       } = JSON.parse(this.cookie.get('user'));
-      console.log(token);
+
       if (token) {
         request = request.clone({
           setHeaders: {
