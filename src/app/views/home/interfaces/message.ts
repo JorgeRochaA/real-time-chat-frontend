@@ -6,3 +6,7 @@ export interface Message {
   username: string;
   username_color: string;
 }
+
+export interface MessageDisplay extends Message {
+  justify: string;
+}
