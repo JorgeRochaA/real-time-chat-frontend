@@ -140,7 +140,10 @@ export class HomeComponent implements OnInit {
     };
     if (this.messageFromInput.trim() !== '') {
       this.message.sendMessage(message).subscribe({
-        next: (data) => {
+        next: () => {
+          this.toastData.type = 'success';
+          this.toastData.title = 'Success!';
+          this.showToast('message sent successfully!');
           this.animatePlane();
           this.messageFromInput = '';
         },
@@ -149,11 +152,15 @@ export class HomeComponent implements OnInit {
         },
       });
     } else {
-      this.toastData.message = 'cant send an empty message';
-      this.toastData.show = true;
-      setTimeout(() => {
-        this.toastData.show = false;
-      }, 2000);
+      this.showToast('cant send an empty message');
     }
+  }
+  showToast(message: string): void {
+    this.toastData.message = message;
+    this.toastData.show = true;
+
+    setTimeout(() => {
+      this.toastData.show = false;
+    }, 2000);
   }
 }
